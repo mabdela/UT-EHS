@@ -1,2 +1,0 @@
-# UT-EHS
-Safety Application 
