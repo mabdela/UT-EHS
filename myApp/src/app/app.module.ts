@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/main/home/home';
 import { AboutPage } from '../pages/main/about/about';
 import { ContactPage } from '../pages/main/contact/contact';
+import {ScannerPage} from '../pages/scanner/QRscanner/scanner';
 import { TabsPage } from '../pages/main/tabs/tabs';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
@@ -31,6 +32,7 @@ const cloudSettings: CloudSettings = {
     HomePage,
     AboutPage,
     ContactPage,
+    ScannerPage,
     TabsPage
   ],
   imports: [
@@ -43,6 +45,7 @@ const cloudSettings: CloudSettings = {
     HomePage,
     AboutPage,
     ContactPage,
+    ScannerPage,
     TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

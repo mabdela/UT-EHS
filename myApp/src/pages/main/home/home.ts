@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import {ScannerPage} from '../../scanner/QRscanner/scanner';
 import { NavController } from 'ionic-angular';
 
 @Component({
@@ -12,6 +13,12 @@ export class HomePage {
 
 
   }
+
+  changePage(){
+    this.navCtrl.push(ScannerPage);
+  }
+
+
 
 
 }
