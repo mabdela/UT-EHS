@@ -17,7 +17,6 @@ export class ContactPage {
   }
   
   launch(){
-	let browser = new InAppBrowser('https://ionic.io', '_blank', 'location=no');
 
 	
 	  
