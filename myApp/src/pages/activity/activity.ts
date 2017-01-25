@@ -25,10 +25,9 @@ export class ActivityPage {
       { title: 'Page One', component: Page1 },
       { title: 'Page Two', component: Page2 }
     ];
-<<<<<<< HEAD
+
     this.activePage=this.pages[0];
-=======
->>>>>>> 1026eb2cfa0a4cff04679267c6b2edd67c3ed163
+
 
   }
 
@@ -47,12 +46,9 @@ export class ActivityPage {
     this.nav.setRoot(page.component);
     this.activePage=page;
   }
-<<<<<<< HEAD
 
   checkActive(page){
     return page==this.activePage;
 
   }
-=======
->>>>>>> 1026eb2cfa0a4cff04679267c6b2edd67c3ed163
 }

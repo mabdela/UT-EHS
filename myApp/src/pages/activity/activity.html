@@ -7,11 +7,7 @@
 
   <ion-content>
     <ion-list>
-<<<<<<< HEAD
-      <button menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]="checkActive(p)" (click)="openPage(p)">
-=======
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
->>>>>>> 1026eb2cfa0a4cff04679267c6b2edd67c3ed163
+      <button menuClose ion-item *ngFor="let p of pages"[class.activeHighlight]="checkActive(p)" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
