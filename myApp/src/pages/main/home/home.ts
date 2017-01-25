@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {ScannerPage} from '../../scanner/QRscanner/scanner';
+import {ActivityPage} from '../../activity/activity';
 import { NavController } from 'ionic-angular';
 
 @Component({
@@ -14,9 +15,14 @@ export class HomePage {
 
   }
 
-  changePage(){
+  scannerPage(){
     this.navCtrl.push(ScannerPage);
   }
+  activityPage(){
+    this.navCtrl.push(ActivityPage);
+  }
 
-  
+
+
+
 }
