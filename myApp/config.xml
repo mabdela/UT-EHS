@@ -58,4 +58,5 @@
     <variable name="SENDER_ID" value="826355237077"/>
   </plugin>
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
+  <allow-navigation href="http://192.168.0.15:8100"/>
 </widget>

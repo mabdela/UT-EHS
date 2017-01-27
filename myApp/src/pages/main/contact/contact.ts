@@ -27,10 +27,10 @@ export class ContactPage {
      },
      toolbar: {
          height: 44,
-         color: '#f0f0f0ff'
+         color: '#387ef5'
      },
      title: {
-         color: '#003264ff',
+         color: '#f0f0f0ff',
          showPageTitle: true
      },
      backButton: {
@@ -38,9 +38,7 @@ export class ContactPage {
         imagePressed: 'ic_action_previous_item',
         align: 'left',
         event: 'backPressed'
-		 
-		 
-   
+		
      },
 
      backButtonCanClose: true
