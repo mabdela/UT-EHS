@@ -2,8 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { Page1 } from './subpages/page1/page1';
-import { Page2 } from './subpages/page2/page2';
+import { ReportAccidentPage } from './subpages/reportaccident/reportaccident';
+import { PastAccidentPage } from './subpages/pastaccident/pastaccident';
+import { ChecklistPage } from './subpages/checklist/checklist';
+import { LabPage } from './subpages/lab/lab';
+import {NotificationPage} from './subpages/notification/notification';
+import { RefresherPage } from './subpages/refresher/refresher';
 
 
 @Component({
@@ -12,7 +16,7 @@ import { Page2 } from './subpages/page2/page2';
 export class ActivityPage {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any = ChecklistPage;
   activePage:any;
 
   pages: Array<{title: string, component: any}>;
@@ -22,8 +26,12 @@ export class ActivityPage {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Page One', component: Page1 },
-      { title: 'Page Two', component: Page2 }
+      { title: 'Safety Checklist', component: ChecklistPage },
+      { title: 'Notifications', component: NotificationPage },
+      { title: 'Refresher Quiz', component: RefresherPage },
+      { title: 'Lab Schedule', component: LabPage },
+      { title: 'Past Accidents', component: PastAccidentPage },
+      { title: 'Report Accident', component: ReportAccidentPage }
     ];
 
     this.activePage=this.pages[0];

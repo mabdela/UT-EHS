@@ -1,27 +1,47 @@
 import { Component } from '@angular/core';
-
-import {ScannerPage} from '../../scanner/QRscanner/scanner';
 import {ActivityPage} from '../../activity/activity';
-import { NavController } from 'ionic-angular';
+import {Platform, AlertController, NavController} from 'ionic-angular';
+declare var cordova:any;
 
 @Component({
   selector: 'home',
   templateUrl: 'home.html'
 })
+
+
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  //private nav:NavController = null;//added
 
-
+  static get parameters() {
+    return [[Platform], [NavController]];
   }
 
-  scannerPage(){
-    this.navCtrl.push(ScannerPage);
+  constructor(private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController) {
+    this.platform = platform;
+    this.navCtrl = navCtrl;
   }
+
   activityPage(){
     this.navCtrl.push(ActivityPage);
   }
 
+  scan() {
+    this.platform.ready().then(() => {
+      cordova.plugins.barcodeScanner.scan((result) => {
+
+        alert("Scan Results"+ ': ' +result.text);
+
+
+
+      }, (error) => {
+
+        alert("Attention!"+ ': ' +error);
+
+
+      });
+    });
+  }
 
 
 

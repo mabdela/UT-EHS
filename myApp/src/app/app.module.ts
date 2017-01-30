@@ -4,10 +4,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/main/home/home';
 import { AboutPage } from '../pages/main/about/about';
 import { ContactPage } from '../pages/main/contact/contact';
-import {ScannerPage} from '../pages/scanner/QRscanner/scanner';
 import {ActivityPage} from '../pages/activity/activity';
-import { Page1 } from '../pages/activity/subpages/page1/page1';
-import { Page2 } from '../pages/activity/subpages/page2/page2';
+import { NotificationPage } from '../pages/activity/subpages/notification/notification';
+import { RefresherPage } from '../pages/activity/subpages/refresher/refresher';
+import{ LabPage } from '../pages/activity/subpages/lab/lab';
+import{ ChecklistPage } from '../pages/activity/subpages/checklist/checklist';
+import{ ReportAccidentPage } from '../pages/activity/subpages/reportaccident/reportaccident';
+import{ PastAccidentPage } from '../pages/activity/subpages/pastaccident/pastaccident';
+
 import { TabsPage } from '../pages/main/tabs/tabs';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
@@ -35,10 +39,13 @@ const cloudSettings: CloudSettings = {
     HomePage,
     AboutPage,
     ContactPage,
-    ScannerPage,
     ActivityPage,
-    Page1,
-    Page2,
+    RefresherPage,
+    NotificationPage,
+    ChecklistPage,
+    LabPage,
+    ReportAccidentPage,
+    PastAccidentPage,
     TabsPage
   ],
   imports: [
@@ -51,10 +58,13 @@ const cloudSettings: CloudSettings = {
     HomePage,
     AboutPage,
     ContactPage,
-    ScannerPage,
     ActivityPage,
-    Page1,
-    Page2,
+    RefresherPage,
+    NotificationPage,
+    ChecklistPage,
+    LabPage,
+    ReportAccidentPage,
+    PastAccidentPage,
     TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

@@ -1,15 +1,16 @@
+
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-page1',
-  templateUrl: 'page1.html'
+  selector: 'checklist',
+  templateUrl: 'checklist.html'
 })
-export class Page1 {
+export class ChecklistPage {
 
   constructor(public navCtrl: NavController) {
-    
+
   }
 
 }

@@ -1,12 +1,13 @@
+
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'notification.html'
+  selector: 'refresher',
+  templateUrl: 'refresher.html'
 })
-export class HomePage {
+export class RefresherPage {
 
   constructor(public navCtrl: NavController) {
 
