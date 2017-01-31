@@ -87,7 +87,7 @@ export class HomePage {
   
     addListenNFC() {
 	   NFC.addNdefListener().subscribe(nfcData => {
-	   alert("Receved NFC tag: " + JSON.stringify(nfcData));
+		   this.parse(nfcData);
 	});
   }
 
@@ -104,6 +104,20 @@ export class HomePage {
 		});
   }
   
+  parse(nfcData){
+	  let payload = nfcData.tag.ndefMessage[0]["payload"];
+	  let string_value = this.bin2string(payload)
+	  alert("Receved NFC tag: " + string_value);
+  }
+  
+  
+bin2string(array){
+	let result = "";
+	for(let i = 0; i < array.length; ++i){
+		result+= (String.fromCharCode(array[i]));
+	}
+	return result;
+}
 
 
 
