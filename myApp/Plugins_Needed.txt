@@ -1,0 +1,3 @@
+ionic plugin add cordova-plugin-themeablebrowser
+ ionic plugin add phonegap-nfc
+ionic plugin add cordova-plugin-ibeacon
