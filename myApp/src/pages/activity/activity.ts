@@ -8,6 +8,7 @@ import { ChecklistPage } from './subpages/checklist/checklist';
 import { LabPage } from './subpages/lab/lab';
 import {NotificationPage} from './subpages/notification/notification';
 import { RefresherPage } from './subpages/refresher/refresher';
+import { EHSPage } from './subpages/ehs/ehs';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { RefresherPage } from './subpages/refresher/refresher';
 export class ActivityPage {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ChecklistPage;
+  rootPage: any = EHSPage;
   activePage:any;
 
   pages: Array<{title: string, component: any}>;
@@ -26,6 +27,7 @@ export class ActivityPage {
 
     // used for an example of ngFor and navigation
     this.pages = [
+	    { title: 'EHS Resources', component: EHSPage },
       { title: 'Safety Checklist', component: ChecklistPage },
       { title: 'Notifications', component: NotificationPage },
       { title: 'Refresher Quiz', component: RefresherPage },

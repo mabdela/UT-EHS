@@ -11,6 +11,7 @@ import{ LabPage } from '../pages/activity/subpages/lab/lab';
 import{ ChecklistPage } from '../pages/activity/subpages/checklist/checklist';
 import{ ReportAccidentPage } from '../pages/activity/subpages/reportaccident/reportaccident';
 import{ PastAccidentPage } from '../pages/activity/subpages/pastaccident/pastaccident';
+import{ EHSPage } from '../pages/activity/subpages/ehs/ehs';
 
 import { TabsPage } from '../pages/main/tabs/tabs';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
@@ -46,6 +47,7 @@ const cloudSettings: CloudSettings = {
     LabPage,
     ReportAccidentPage,
     PastAccidentPage,
+    EHSPage,
     TabsPage
   ],
   imports: [
@@ -65,6 +67,7 @@ const cloudSettings: CloudSettings = {
     LabPage,
     ReportAccidentPage,
     PastAccidentPage,
+    EHSPage,
     TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
