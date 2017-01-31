@@ -28,7 +28,12 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  twitter:(
+    base: #2B547E,
+    contrast: #ffffff
+  ),
+  active: #99C2EC
 );
 
 
