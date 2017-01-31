@@ -35,10 +35,17 @@
       </button>
     </ion-item>
 
-    <ion-item>
+        <ion-item>
       Tap Item
-      <button ion-button item-right outline icon-right>
+      <button ion-button item-right outline icon-right (click)="nfcPage()">
         NFC
+      </button>
+    </ion-item>
+	
+	<ion-item>
+      Tap Item
+      <button ion-button item-right outline icon-right (click)="nfcWrite()">
+        NFC Write
       </button>
     </ion-item>
   </ion-list>
