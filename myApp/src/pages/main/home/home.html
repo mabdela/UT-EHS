@@ -43,9 +43,16 @@
     </ion-item>
 	
 	<ion-item>
-      Tap Item
+      Hold NFC Tag to back
       <button ion-button item-right outline icon-right (click)="nfcWrite()">
         NFC Write
+      </button>
+    </ion-item>
+	
+	<ion-item>
+      Beacons
+      <button ion-button item-right outline icon-right (click)="beacon()">
+        Detect
       </button>
     </ion-item>
   </ion-list>

@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import {ActivityPage} from '../../activity/activity';
 import {Platform, AlertController, NavController} from 'ionic-angular';
-import { NFC, Ndef } from 'ionic-native';
+import { NFC, Ndef, IBeacon, BLE } from 'ionic-native';
 declare var cordova:any;
 
 @Component({
@@ -106,20 +106,56 @@ export class HomePage {
   
   parse(nfcData){
 	  let payload = nfcData.tag.ndefMessage[0]["payload"];
-	  let string_value = this.bin2string(payload)
+	  let string_value = this.bin2string(payload);
 	  alert("Receved NFC tag: " + string_value);
   }
   
+  beacon(){
+	this.platform.ready().then(() => {
+      this.bluetooth();
+    });
   
-bin2string(array){
-	let result = "";
-	for(let i = 0; i < array.length; ++i){
-		result+= (String.fromCharCode(array[i]));
+  }
+  
+  bluetooth(){
+	  BLE.isEnabled()
+	  .then( () => {  
+		this.detect();
+	  })
+	  .catch( () => { 
+		alert("Disabled");
+		//BLE.showBluetoothSettings();
+	  });
+	  
+  }
+  
+  detect(){
+	 let beaconRegion = IBeacon.BeaconRegion('deskBeacon','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+
+	IBeacon.startMonitoringForRegion(beaconRegion)
+	  .then(
+		() => alert("detected"),
+		error => console.error('Native layer failed to begin monitoring: ', error)
+	  );
+	  
+  }
+ 
+	bin2string(array){
+		let result = "";
+		for(let i = 0; i < array.length; ++i){
+			result+= (String.fromCharCode(array[i]));
+		}
+		return result;
 	}
-	return result;
-}
 
-
+	string2bin(string){
+		
+	   let array = new Uint8Array(string.length);
+	   for (let i = 0, l = string.length; i < l; i++) {
+		   array[i] = string.charCodeAt(i);
+		}
+		return array.buffer;
+	}
 
 
 }
