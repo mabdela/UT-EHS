@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import {ActivityPage} from '../../activity/activity';
 import {Platform, AlertController, NavController} from 'ionic-angular';
 import { NFC, Ndef } from 'ionic-native';
@@ -13,14 +13,16 @@ declare var cordova:any;
 export class HomePage {
 
   //private nav:NavController = null;//added
-
+  public tag:any;
+  
   static get parameters() {
     return [[Platform], [NavController]];
   }
 
-  constructor(private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController) {
+  constructor(private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone) {
     this.platform = platform;
     this.navCtrl = navCtrl;
+	this.tag = {};
   }
 
   activityPage(){
@@ -44,7 +46,7 @@ export class HomePage {
     });
   }
   
-    nfcPage() {
+  nfcPage() {
     this.platform.ready().then(() => {
       this.checkNFC();
     });
@@ -58,21 +60,34 @@ export class HomePage {
       })
 	  //failure
       .catch(() => {
-        let msg = this.alertCtrl.create({
-          subTitle : "NFC DISABLED",
-          buttons: [{ text : "OK"},{ text : "Go Setting",
-            handler : () => {
-              NFC.showSettings();
-            }
-          }]
-        });
-        msg.present();
-      });
+		  
+		  //confirm alert doesn't work after merge
+/* 		let confirm = this.alertCtrl.create({
+		title: 'NFC is currently disabled',
+		message: 'Please enable NFC',
+		buttons: [
+			{
+			  text: 'Cancel'
+			},
+			{
+			  text: 'Go to Settings',
+			  handler: () => { */
+			  
+			  //use basic alert for now
+			  alert("Please enable NFC");
+				NFC.showSettings();;
+/* 				}
+			}
+		]
+		});
+		confirm.present(); */
+         
+	  });
   }
   
     addListenNFC() {
-   NFC.addNdefListener().subscribe(nfcData => {
-   alert("Receved NFC tag: " + JSON.stringify(nfcData));
+	   NFC.addNdefListener().subscribe(nfcData => {
+	   alert("Receved NFC tag: " + JSON.stringify(nfcData));
 	});
   }
 
