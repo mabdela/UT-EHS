@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ActivityPage} from '../../activity/activity';
-import {AlertController, NavController, Platform, NavParams, ViewController } from 'ionic-angular';
+import {Platform, AlertController, NavController} from 'ionic-angular';
 import { NFC, Ndef } from 'ionic-native';
 declare var cordova:any;
 
@@ -57,9 +57,8 @@ export class HomePage {
         this.addListenNFC();
       })
 	  //failure
-      .catch(err => {
-        console.log(err);
-        let alert = this.alert.create({
+      .catch(() => {
+        let msg = this.alertCtrl.create({
           subTitle : "NFC DISABLED",
           buttons: [{ text : "OK"},{ text : "Go Setting",
             handler : () => {
@@ -67,18 +66,14 @@ export class HomePage {
             }
           }]
         });
-        alert.present();
+        msg.present();
       });
   }
   
     addListenNFC() {
    NFC.addNdefListener().subscribe(nfcData => {
-	   
-	   let message = JSON.stringify(nfcData);
-	  alert("Recieved NFC tag: " + message);
-	   
-	  
-		});
+   alert("Receved NFC tag: " + JSON.stringify(nfcData));
+	});
   }
 
   nfcWrite(){
