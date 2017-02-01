@@ -3,6 +3,7 @@ import {ActivityPage} from '../../activity/activity';
 import {Platform, AlertController, NavController} from 'ionic-angular';
 declare var cordova:any;
 
+
 @Component({
   selector: 'home',
   templateUrl: 'home.html'
@@ -46,3 +47,4 @@ export class HomePage {
 
 
 }
+

@@ -27,7 +27,7 @@ export class ContactPage {
      },
      toolbar: {
          height: 44,
-         color: '#387ef5'
+         color: '#2B547E'
      },
      title: {
          color: '#f0f0f0ff',
@@ -38,15 +38,15 @@ export class ContactPage {
         imagePressed: 'ic_action_previous_item',
         align: 'left',
         event: 'backPressed'
-		
+
      },
 
      backButtonCanClose: true
 };
 
 let browser = new ThemeableBrowser('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2017/01/Chemical-Storage-Table-Updated.pdf', '_blank', options);
-	  
-	  
+
+
   }
 
 

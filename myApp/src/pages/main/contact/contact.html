@@ -6,12 +6,25 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-   <button ion-button (click)="launch_themeable()">Launch URL</button>
-  <h3>Contact Information</h3>
-  <p>Office of Environmental Health & Safety</p>
-  <p>215 Huron Street, 7th Floor</p>
-  <p>Toronto, ON M5S 1A2</p>
-  <p>Tel: 416.978.4467</p>
-  <p>Fax: 416.971.1361</p>
+
+<ion-content class="cards-sm">
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-card-title>
+        Contact Information
+      </ion-card-title>
+      <p>Office of Environmental Health & Safety</p>
+      <p>215 Huron Street, 7th Floor</p>
+      <p>Toronto, ON M5S 1A2</p>
+      <p>Tel: 416.978.4467</p>
+      <p>Fax: 416.971.1361</p>
+    </ion-card-content>
+
+
+  </ion-card>
+
+  <button ion-button (click)="launch_themeable()">Launch URL</button>
+
 </ion-content>
