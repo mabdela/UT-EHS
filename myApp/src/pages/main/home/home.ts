@@ -12,6 +12,8 @@ declare var cordova:any;
 
 export class HomePage {
 
+
+
   //private nav:NavController = null;//added
 
   static get parameters() {
