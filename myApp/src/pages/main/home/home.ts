@@ -135,11 +135,13 @@ export class HomePage {
   detect(){
 	 let beaconRegion = IBeacon.BeaconRegion('deskBeacon','b9407f30-f5f8-466e-aff9-25556b57fe6d');
 
-	IBeacon.startMonitoringForRegion(beaconRegion)
-	  .then(
-		() => alert("detected"),
-		error => console.error('Native layer failed to begin monitoring: ', error)
-	  );
+	IBeacon.startMonitoringForRegion(beaconRegion)	  
+	  .then( ()=> {
+			alert("success");
+		})
+		.catch( () =>{
+			alert("failure");
+		});
 	  
   }
  
