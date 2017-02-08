@@ -54,10 +54,9 @@ export class HomePage {
     NFC.enabled()
 	//Success
       .then(() => {
-		  if(this.listener == 0){
-			  this.listener = 1;
+	
 			  this.addListenNFC();
-		  }
+		  
       })
 	  //failure
       .catch(() => {
