@@ -133,15 +133,36 @@ export class HomePage {
   }
   
   detect(){
-	 let beaconRegion = IBeacon.BeaconRegion('deskBeacon','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+	// Request permission to use location on iOS
+	IBeacon.requestAlwaysAuthorization();
+	// create a new delegate and register it with the native layer
+	let delegate = IBeacon.Delegate();
 
-	IBeacon.startMonitoringForRegion(beaconRegion)	  
-	  .then( ()=> {
-			alert("success");
-		})
-		.catch( () =>{
-			alert("failure");
-		});
+	// Subscribe to some of the delegate's event handlers
+	delegate.didRangeBeaconsInRegion()
+	  .subscribe(
+		data => {console.log('didRangeBeaconsInRegion: ', data);}
+
+	  );
+	delegate.didStartMonitoringForRegion()
+	  .subscribe(
+	   data => {console.log('didStartMonitoringForRegion: ', data);}
+		//error => console.error();
+	  );
+	delegate.didEnterRegion()
+	  .subscribe(
+		data => {
+		  console.log('didEnterRegion: ', data);
+		}
+	  );
+
+	let beaconRegion = IBeacon.BeaconRegion('deskBeacon','b9407f30-f5f8-466e-aff9-25556b57feee');
+
+	IBeacon.startMonitoringForRegion(beaconRegion)
+	  .then(
+		() => console.log('Native layer recieved the request to monitoring'),
+		error => console.error('Native layer failed to begin monitoring: ', error)
+	  );
 	  
   }
  
