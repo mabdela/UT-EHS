@@ -1,20 +1,15 @@
 import { Component, NgZone } from '@angular/core';
 import {ActivityPage} from '../../activity/activity';
 import {Platform, AlertController, NavController} from 'ionic-angular';
-import { NFC, Ndef, IBeacon, BLE } from 'ionic-native';
+import { NFC, Ndef, IBeacon, BLE,ThemeableBrowser } from 'ionic-native';
 declare var cordova:any;
-
 
 @Component({
   selector: 'home',
   templateUrl: 'home.html'
 })
 
-
 export class HomePage {
-
-
-
   //private nav:NavController = null;//added
   public tag:any;
   
@@ -59,7 +54,10 @@ export class HomePage {
     NFC.enabled()
 	//Success
       .then(() => {
-        this.addListenNFC();
+		  if(this.listener == 0){
+			  this.listener = 1;
+			  this.addListenNFC();
+		  }
       })
 	  //failure
       .catch(() => {
@@ -88,7 +86,7 @@ export class HomePage {
 	  });
   }
   
-    addListenNFC() {
+  addListenNFC() {
 	   NFC.addNdefListener().subscribe(nfcData => {
 		   this.parse(nfcData);
 	});
@@ -111,6 +109,7 @@ export class HomePage {
 	  let payload = nfcData.tag.ndefMessage[0]["payload"];
 	  let string_value = this.bin2string(payload);
 	  alert("Receved NFC tag: " + string_value);
+	  this.launch_themeable(string_value);
   }
   
   beacon(){
@@ -127,7 +126,7 @@ export class HomePage {
 	  })
 	  .catch( () => { 
 		alert("Disabled");
-		//BLE.showBluetoothSettings();
+		BLE.showBluetoothSettings();
 	  });
 	  
   }
@@ -160,13 +159,12 @@ export class HomePage {
 
 	IBeacon.startMonitoringForRegion(beaconRegion)
 	  .then(
-		() => console.log('Native layer recieved the request to monitoring'),
-		error => console.error('Native layer failed to begin monitoring: ', error)
+		() => {alert("Success"); this.launch_themeable("Beacon");}
 	  );
 	  
   }
  
-	bin2string(array){
+  bin2string(array){
 		let result = "";
 		for(let i = 0; i < array.length; ++i){
 			result+= (String.fromCharCode(array[i]));
@@ -174,7 +172,7 @@ export class HomePage {
 		return result;
 	}
 
-	string2bin(string){
+  string2bin(string){
 		
 	   let array = new Uint8Array(string.length);
 	   for (let i = 0, l = string.length; i < l; i++) {
@@ -183,6 +181,34 @@ export class HomePage {
 		return array.buffer;
 	}
 
+  launch_themeable(content){
+	  let options = {
+		 statusbar: {
+			 color: '#ffffffff'
+		 },
+		 toolbar: {
+			 height: 44,
+			 color: '#2B547E'
+		 },
+		 title: {
+			 color: '#f0f0f0ff',
+			 showPageTitle: true
+		 },
+		 backButton: {
+			image: 'ic_action_previous_item',
+			imagePressed: 'ic_action_previous_item',
+			align: 'left',
+			event: 'backPressed'
+
+		 },
+		backButtonCanClose: true
+		};
+	    
+		if (content == 'Beacon'){
+			content = 'https://ehs.utoronto.ca/our-services/laser-safety/laser-safety-course/';
+		}
+		let browser = new ThemeableBrowser(content, '_blank', options);		
+	}
 
 }
 
