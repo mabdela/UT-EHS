@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/main/tabs/tabs';
 import { NavController, ModalController, AlertController, LoadingController } from 'ionic-angular';
 import { Todos } from '../providers/todos';
 import { Auth } from '../providers/auth';
-declare var text: any; //global variable to store the push notification
+
 
 @Component({
   templateUrl: 'app.html'
@@ -19,6 +19,8 @@ export class MyApp {
   rootPage = TabsPage;
 
   loading: any;
+
+  notification:Array<{title:string, message:string}>=[];
 
 
 
@@ -37,7 +39,9 @@ export class MyApp {
 
 	this.push.rx.notification()
 	.subscribe((msg) => {
-    text = msg.title + ': ' + msg.text;
+
+    alert(this.notification[0].title+":"+this.notification[0].message);
+	  this.notification.push({title:msg.title, message:msg.text});
     this.addTodo();
 
 
@@ -46,7 +50,9 @@ export class MyApp {
 
 
   addTodo(){
-    this.todoService.createTodo(text).then((result) => {
+
+
+    this.todoService.createTodo(this.notification[0]).then((result) => {
       this.loading.dismiss();
       console.log("todo created");
     }, (err) => {

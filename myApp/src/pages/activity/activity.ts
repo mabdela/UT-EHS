@@ -79,8 +79,8 @@ export class ActivityPage {
   logout(){
 
     this.authService.logout();
-    this.rootPage=LoginPage;
-    //this.nav.setRoot(HomePage);
+    //this.rootPage=LoginPage;
+    this.nav.setRoot(LoginPage);
 
   }
 

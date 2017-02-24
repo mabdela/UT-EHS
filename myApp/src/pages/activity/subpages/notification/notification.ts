@@ -15,6 +15,9 @@ export class NotificationPage {
   loading: any;
 
 
+  //Related to the display of stuff
+  data: any;
+
   constructor(public navCtrl: NavController, public todoService: Todos, public modalCtrl: ModalController,
               public alertCtrl: AlertController, public authService: Auth, public loadingCtrl: LoadingController) {
 
@@ -23,8 +26,8 @@ export class NotificationPage {
 
   ionViewDidLoad(){
 
-    this.todoService.getTodos().then((data) => {
-      this.todos = data;
+    this.todoService.getTodos().then((result) => {
+      this.data = result;
     }, (err) => {
       console.log("not allowed");
     });
@@ -62,6 +65,21 @@ export class NotificationPage {
 
     this.loading.present();
 
+  }
+
+
+
+
+
+
+  toggleDetails(data) {
+    if (data.showDetails) {
+      data.showDetails = false;
+      data.icon = 'ios-add-circle-outline';
+    } else {
+      data.showDetails = true;
+      data.icon = 'ios-remove-circle-outline';
+    }
   }
 
 }
