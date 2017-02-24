@@ -8,7 +8,6 @@
 
 
 
-
 <ion-content padding class="buttons-components-page" >
   <ion-card>
     <ion-card-content class="cards-md">
@@ -24,7 +23,7 @@
   <ion-list>
     <ion-item>
       Log In
-      <button ion-button item-right outline (click)="activityPage()">Portal</button>
+      <button ion-button item-right outline (click)="loginPage()">Portal</button>
     </ion-item>
 
     <ion-item>
@@ -41,14 +40,14 @@
         NFC
       </button>
     </ion-item>
-	
+
 	<ion-item>
       Hold NFC Tag to back
       <button ion-button item-right outline icon-right (click)="nfcWrite()">
         NFC Write
       </button>
     </ion-item>
-	
+
 	<ion-item>
       Beacons
       <button ion-button item-right outline icon-right (click)="beacon()">
@@ -57,6 +56,7 @@
     </ion-item>
   </ion-list>
 </ion-content>
+
 
 
 

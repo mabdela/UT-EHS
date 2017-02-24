@@ -13,6 +13,13 @@ import{ ReportAccidentPage } from '../pages/activity/subpages/reportaccident/rep
 import{ PastAccidentPage } from '../pages/activity/subpages/pastaccident/pastaccident';
 import{ EHSPage } from '../pages/activity/subpages/ehs/ehs';
 
+import { Storage } from '@ionic/storage';
+import { LoginPage } from '../pages/login-page/login-page';
+import { SignupPage } from '../pages/signup-page/signup-page';
+import { Todos } from '../providers/todos';
+import { Auth } from '../providers/auth';
+import { TabsService } from '../providers/tabs.service';
+
 import { TabsPage } from '../pages/main/tabs/tabs';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
@@ -48,6 +55,8 @@ const cloudSettings: CloudSettings = {
     ReportAccidentPage,
     PastAccidentPage,
     EHSPage,
+    LoginPage,
+    SignupPage,
     TabsPage
   ],
   imports: [
@@ -68,9 +77,11 @@ const cloudSettings: CloudSettings = {
     ReportAccidentPage,
     PastAccidentPage,
     EHSPage,
+    LoginPage,
+    SignupPage,
     TabsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [Storage, Todos, Auth, TabsService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
 

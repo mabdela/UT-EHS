@@ -16,11 +16,11 @@ export class ContactPage {
 
   }
 
-  launch_in_app(){
+  /*launch_in_app(){
 	let browser = new InAppBrowser('https://ehs.utoronto.ca/wp-content/uploads/2017/01/Chemical-Storage-Table-Updated.pdf', '_blank', 'location=no');
-  }
+  }*/
 
-  launch_themeable(){
+  launch_themeable( arg){
 	  let options = {
      statusbar: {
          color: '#ffffffff'
@@ -44,7 +44,7 @@ export class ContactPage {
      backButtonCanClose: true
 };
 
-let browser = new ThemeableBrowser('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2017/01/Chemical-Storage-Table-Updated.pdf', '_blank', options);
+let browser = new ThemeableBrowser(arg, '_blank', options);
 
 
   }

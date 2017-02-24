@@ -7,6 +7,10 @@ import {
 } from '@ionic/cloud-angular';
 import { TabsPage } from '../pages/main/tabs/tabs';
 
+import { NavController, ModalController, AlertController, LoadingController } from 'ionic-angular';
+import { Todos } from '../providers/todos';
+import { Auth } from '../providers/auth';
+declare var text: any; //global variable to store the push notification
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +18,11 @@ import { TabsPage } from '../pages/main/tabs/tabs';
 export class MyApp {
   rootPage = TabsPage;
 
-  constructor(platform: Platform, public push: Push) {
+  loading: any;
+
+
+
+  constructor(platform: Platform, public push: Push, public todoService: Todos, public modalCtrl: ModalController, public alertCtrl: AlertController, public authService: Auth, public loadingCtrl: LoadingController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -29,7 +37,33 @@ export class MyApp {
 
 	this.push.rx.notification()
 	.subscribe((msg) => {
-		alert(msg.title + ': ' + msg.text);
+    text = msg.title + ': ' + msg.text;
+    this.addTodo();
+
+
 		});
+  }
+
+
+  addTodo(){
+    this.todoService.createTodo(text).then((result) => {
+      this.loading.dismiss();
+      console.log("todo created");
+    }, (err) => {
+      this.loading.dismiss();
+      console.log("not allowed");
+    });
+
+  }
+
+
+  showLoader(){
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Authenticating...'
+    });
+
+    this.loading.present();
+
   }
 }

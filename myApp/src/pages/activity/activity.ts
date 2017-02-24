@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
 import { ReportAccidentPage } from './subpages/reportaccident/reportaccident';
 import { PastAccidentPage } from './subpages/pastaccident/pastaccident';
 import { ChecklistPage } from './subpages/checklist/checklist';
@@ -10,19 +9,31 @@ import {NotificationPage} from './subpages/notification/notification';
 import { RefresherPage } from './subpages/refresher/refresher';
 import { EHSPage } from './subpages/ehs/ehs';
 
+import{HomePage} from '../main/home/home';
+import { Auth } from '../../providers/auth';
+import { TabsService } from '../../providers/tabs.service';
+import {LoginPage} from '../login-page/login-page'
 
 @Component({
   templateUrl: 'activity.html'
 })
 export class ActivityPage {
+
+
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = EHSPage;
+
+
   activePage:any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+
+  constructor(public platform: Platform,  public authService: Auth, public tabs: TabsService) {
+
+    //this.tabs.hide();
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -61,4 +72,17 @@ export class ActivityPage {
     return page==this.activePage;
 
   }
+
+
+
+
+  logout(){
+
+    this.authService.logout();
+    this.rootPage=LoginPage;
+    //this.nav.setRoot(HomePage);
+
+  }
+
+
 }
