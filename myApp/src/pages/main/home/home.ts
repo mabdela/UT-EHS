@@ -1,4 +1,5 @@
 import { Component, NgZone } from '@angular/core';
+
 //import {ActivityPage} from '../../activity/activity';
 //The last four to control the side menu
 
@@ -9,18 +10,16 @@ import { NFC, Ndef, IBeacon, BLE } from 'ionic-native';
 import {InAppBrowser, ThemeableBrowser} from 'ionic-native';
 
 import {LoginPage}from '../../login-page/login-page'
+import {ActivityPage} from '../../activity/activity';
 
 declare var cordova:any;
-
 
 @Component({
   selector: 'home',
   templateUrl: 'home.html'
 })
 
-
 export class HomePage {
-
 
   //private nav:NavController = null;//added
   public tag:any;
@@ -126,7 +125,9 @@ export class HomePage {
     NFC.enabled()
 	//Success
       .then(() => {
-        this.addListenNFC();
+
+			  this.addListenNFC();
+
       })
 	  //failure
       .catch(() => {
@@ -155,7 +156,8 @@ export class HomePage {
 	  });
   }
 
-    addListenNFC() {
+  addListenNFC() {
+
 	   NFC.addNdefListener().subscribe(nfcData => {
 		   this.parse(nfcData);
 	});
@@ -178,6 +180,7 @@ export class HomePage {
 	  let payload = nfcData.tag.ndefMessage[0]["payload"];
 	  let string_value = this.bin2string(payload);
 	  alert("Receved NFC tag: " + string_value);
+	  this.launch_themeable(string_value);
   }
 
   beacon(){
@@ -194,31 +197,54 @@ export class HomePage {
 	  })
 	  .catch( () => {
 		alert("Disabled");
-		//BLE.showBluetoothSettings();
+		BLE.showBluetoothSettings();
 	  });
 
   }
 
   detect(){
-	 let beaconRegion = IBeacon.BeaconRegion('deskBeacon','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+	// Request permission to use location on iOS
+	IBeacon.requestAlwaysAuthorization();
+	// create a new delegate and register it with the native layer
+	let delegate = IBeacon.Delegate();
+
+	// Subscribe to some of the delegate's event handlers
+	delegate.didRangeBeaconsInRegion()
+	  .subscribe(
+		data => {console.log('didRangeBeaconsInRegion: ', data);}
+
+	  );
+	delegate.didStartMonitoringForRegion()
+	  .subscribe(
+	   data => {console.log('didStartMonitoringForRegion: ', data);}
+		//error => console.error();
+	  );
+	delegate.didEnterRegion()
+	  .subscribe(
+		data => {
+		  console.log('didEnterRegion: ', data);
+		}
+	  );
+
+	let beaconRegion = IBeacon.BeaconRegion('deskBeacon','b9407f30-f5f8-466e-aff9-25556b57feee');
 
 	IBeacon.startMonitoringForRegion(beaconRegion)
 	  .then(
-		() => alert("detected"),
-		error => console.error('Native layer failed to begin monitoring: ', error)
+		() => {alert("Success"); this.launch_themeable("Beacon");}
 	  );
 
   }
 
-	bin2string(array){
-		let result = "";
-		for(let i = 0; i < array.length; ++i){
-			result+= (String.fromCharCode(array[i]));
-		}
-		return result;
-	}
+  bin2string(array){
+    let result = "";
+    for(let i = 0; i < array.length; ++i){
+      result+= (String.fromCharCode(array[i]));
+    }
+    return result;
+  }
 
-	string2bin(string){
+
+  string2bin(string){
 
 	   let array = new Uint8Array(string.length);
 	   for (let i = 0, l = string.length; i < l; i++) {
@@ -226,6 +252,7 @@ export class HomePage {
 		}
 		return array.buffer;
 	}
+
 
 
 }
