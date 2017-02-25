@@ -49,7 +49,7 @@ export class HomePage {
     this.navCtrl.push(ActivityPage);
   }*/
 
-  launch_themeable( arg){
+  launch_themeable(arg){
     let options = {
       statusbar: {
         color: '#ffffffff'
@@ -67,7 +67,6 @@ export class HomePage {
         imagePressed: 'ic_action_previous_item',
         align: 'left',
         event: 'backPressed'
-
       },
 
       backButtonCanClose: true
@@ -157,24 +156,11 @@ export class HomePage {
   }
 
   addListenNFC() {
-
 	   NFC.addNdefListener().subscribe(nfcData => {
 		   this.parse(nfcData);
 	});
   }
 
-  nfcWrite(){
-
-	  let message = Ndef.textRecord('Hello world');
-
-	  NFC.write([message])
-		.then( ()=> {
-			alert("success");
-		})
-		.catch( () =>{
-			alert("failure");
-		});
-  }
 
   parse(nfcData){
 	  let payload = nfcData.tag.ndefMessage[0]["payload"];
@@ -209,28 +195,61 @@ export class HomePage {
 	let delegate = IBeacon.Delegate();
 
 	// Subscribe to some of the delegate's event handlers
-	delegate.didRangeBeaconsInRegion()
-	  .subscribe(
-		data => {console.log('didRangeBeaconsInRegion: ', data);}
-
-	  );
 	delegate.didStartMonitoringForRegion()
 	  .subscribe(
 	   data => {console.log('didStartMonitoringForRegion: ', data);}
 		//error => console.error();
 	  );
+	  
 	delegate.didEnterRegion()
 	  .subscribe(
 		data => {
-		  console.log('didEnterRegion: ', data);
+			console.log('didEnterRegion: ', data);
+			let page = data.region.identifier;
+			alert("ENTER REGION " + page);
+		    //will need some lookup table for the different beacons
+			if(page == "LabGoggles"){
+					this.launch_themeable("https://ehs.utoronto.ca/");
+			}
+			if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
+					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
+			}
+			
+		}
+	  );
+	  
+	  
+	  delegate.didExitRegion()
+	  .subscribe(
+		data => {
+			console.log('didExitRegion: ', data);
+			let page = data.region.identifier;
+			alert("EXIT REGION " + page);
+		    //will need some lookup table for the different beacons
+			if(page == "LabGoggles"){
+					//maybe add a variable here so only opens once every day
+					//this.launch_themeable("https://ehs.utoronto.ca/");
+			}
+			if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
+					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
+			}
+			
 		}
 	  );
 
-	let beaconRegion = IBeacon.BeaconRegion('deskBeacon','b9407f30-f5f8-466e-aff9-25556b57feee');
-
-	IBeacon.startMonitoringForRegion(beaconRegion)
+	let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
+	let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+	
+	IBeacon.startMonitoringForRegion(blueBeacon)
 	  .then(
-		() => {alert("Success"); this.launch_themeable("Beacon");}
+		(data) => {console.log('startMonitoringForRegion: ' + data);
+		}
+	  );
+	  
+	  IBeacon.startMonitoringForRegion(greenBeacon)
+	  .then(
+		(data) => {console.log('startMonitoringForRegion: ' + data);
+		}
 	  );
 
   }
@@ -242,16 +261,17 @@ export class HomePage {
     }
     return result;
   }
-
-
-  string2bin(string){
-
-	   let array = new Uint8Array(string.length);
-	   for (let i = 0, l = string.length; i < l; i++) {
-		   array[i] = string.charCodeAt(i);
-		}
-		return array.buffer;
-	}
+  
+    nfcWrite(){
+	  let message = Ndef.textRecord('Hello world');
+	  NFC.write([message])
+		.then( ()=> {
+			alert("success");
+		})
+		.catch( () =>{
+			alert("failure");
+		});
+  }
 
 
 
