@@ -29,11 +29,12 @@ export class HomePage {
   }
 
 
-  constructor(private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone, public menu: MenuController , public app: App) {
+  constructor( private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone, public menu: MenuController , public app: App) {
     //this.menu.swipeEnable(false);//side menu disable
     this.platform = platform;
     this.navCtrl = navCtrl;
-	  this.tag = {};
+	//this.beaconCount = 0;
+	this.tag = {};
 
   }
 
@@ -120,6 +121,7 @@ export class HomePage {
     });
   }
 
+  //Add a variable so can only added lisenter once
   checkNFC() {
     NFC.enabled()
 	//Success
@@ -179,12 +181,25 @@ export class HomePage {
   bluetooth(){
 	  BLE.isEnabled()
 	  .then( () => {
-		this.detect();
+		  //alert(this.beaconCount);
+		  //alert("hello");
+		  //if(this.beaconCount%2 == 0){ //Enable monitoring
+				
+				this.detect();
+		 // }
+		  //else{ //disable monitoring
+			//  this.disable();
+		  //}
+		
+		
+		//this.beaconCount++;
 	  })
 	  .catch( () => {
 		alert("Disabled");
 		BLE.showBluetoothSettings();
 	  });
+	  
+	  
 
   }
 
@@ -206,10 +221,11 @@ export class HomePage {
 		data => {
 			console.log('didEnterRegion: ', data);
 			let page = data.region.identifier;
-			alert("ENTER REGION " + page);
+			//alert("ENTER REGION " + page);
 		    //will need some lookup table for the different beacons
 			if(page == "LabGoggles"){
-					this.launch_themeable("https://ehs.utoronto.ca/");
+					alert(page);
+					//this.launch_themeable("https://ehs.utoronto.ca/");
 			}
 			if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
 					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
@@ -224,7 +240,7 @@ export class HomePage {
 		data => {
 			console.log('didExitRegion: ', data);
 			let page = data.region.identifier;
-			alert("EXIT REGION " + page);
+			//alert("EXIT REGION " + page);
 		    //will need some lookup table for the different beacons
 			if(page == "LabGoggles"){
 					//maybe add a variable here so only opens once every day
@@ -236,6 +252,7 @@ export class HomePage {
 			
 		}
 	  );
+	
 
 	let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
 	let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
@@ -252,6 +269,13 @@ export class HomePage {
 		}
 	  );
 
+  }
+  
+  disable(){
+	  let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
+	  let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+	  IBeacon.stopMonitoringForRegion(greenBeacon);
+	  IBeacon.stopMonitoringForRegion(blueBeacon);
   }
 
   bin2string(array){
