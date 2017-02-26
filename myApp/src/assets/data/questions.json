@@ -1,0 +1,39 @@
+{
+  "questions": [
+
+    {
+      "flashCardFront": "This is a sample question with the following four options. Select the best answer.",
+      "flashCardBack": "Option A",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "Option A", "correct": true, "selected": false},
+        {"answer": "Option B", "correct": false, "selected": false},
+        {"answer": "Option C", "correct": false, "selected": false},
+        {"answer": "Option D", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "This is another question with the following four Options. This is the instruction to the question. Choose the best answer.",
+      "flashCardBack": "Option B",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "Option A", "correct": false, "selected": false},
+        {"answer": "Option B", "correct": true, "selected": false},
+        {"answer": "Option C", "correct": false, "selected": false},
+        {"answer": "Option D", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "This is the third question to be answered. Choose the best answer from the following given options and the final score will be shown after that.",
+      "flashCardBack": "Option C",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "Option A", "correct": false, "selected": false},
+        {"answer": "Option B", "correct": false, "selected": false},
+        {"answer": "Option C", "correct": true, "selected": false},
+        {"answer": "Option D", "correct": false, "selected": false}
+      ]
+    }
+
+  ]
+}

@@ -7,11 +7,11 @@ import { ContactPage } from '../pages/main/contact/contact';
 import {ActivityPage} from '../pages/activity/activity';
 import { NotificationPage } from '../pages/activity/subpages/notification/notification';
 import { RefresherPage } from '../pages/activity/subpages/refresher/refresher';
-import{ LabPage } from '../pages/activity/subpages/lab/lab';
-import{ ChecklistPage } from '../pages/activity/subpages/checklist/checklist';
-import{ ReportAccidentPage } from '../pages/activity/subpages/reportaccident/reportaccident';
-import{ PastAccidentPage } from '../pages/activity/subpages/pastaccident/pastaccident';
-import{ EHSPage } from '../pages/activity/subpages/ehs/ehs';
+import { LabPage } from '../pages/activity/subpages/lab/lab';
+import { ChecklistPage } from '../pages/activity/subpages/checklist/checklist';
+import { ReportAccidentPage } from '../pages/activity/subpages/reportaccident/reportaccident';
+import { PastAccidentPage } from '../pages/activity/subpages/pastaccident/pastaccident';
+import { EHSPage } from '../pages/activity/subpages/ehs/ehs';
 
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../pages/login-page/login-page';
@@ -19,6 +19,9 @@ import { SignupPage } from '../pages/signup-page/signup-page';
 import { Todos } from '../providers/todos';
 import { Auth } from '../providers/auth';
 import { TabsService } from '../providers/tabs.service';
+
+import { FlashCardComponent } from '../components/flash-card/flash-card';
+import { Data } from '../providers/data';
 
 import { TabsPage } from '../pages/main/tabs/tabs';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
@@ -57,6 +60,7 @@ const cloudSettings: CloudSettings = {
     EHSPage,
     LoginPage,
     SignupPage,
+    FlashCardComponent,
     TabsPage
   ],
   imports: [
@@ -81,7 +85,7 @@ const cloudSettings: CloudSettings = {
     SignupPage,
     TabsPage
   ],
-  providers: [Storage, Todos, Auth, TabsService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [Storage, Todos, Auth, TabsService, {provide: ErrorHandler, useClass: IonicErrorHandler}, Data]
 })
 export class AppModule {}
 

@@ -7,12 +7,46 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+<ion-content>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-slides #slides [options]="slideOptions">
+
+    <ion-slide class="start-slide">
+      <button ion-button color="primary" (click)="nextSlide()">Start!</button>
+    </ion-slide>
+
+    <ion-slide *ngFor="let question of questions; let i = index;">
+
+      <h4>Question {{i+1}}</h4>
+
+      <flash-card [isFlipped]="question.flashCardFlipped">
+        <div class="flash-card-front" [innerHTML]="question.flashCardFront"></div>
+        <div class="flash-card-back" [innerHTML]="question.flashCardBack"></div>
+      </flash-card>
+
+      <ion-list no-lines radio-group>
+
+        <ion-item *ngFor="let answer of question.answers; let i = index;">
+
+          <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
+          <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected" [disabled]="hasAnswered"></ion-radio>
+
+        </ion-item>
+
+      </ion-list>
+
+    </ion-slide>
+
+    <ion-slide>
+      <h2>Final Score: {{score}}</h2>
+
+      <button (click)="restartQuiz()" ion-button full color="primary">Start Again</button>
+
+    </ion-slide>
+
+  </ion-slides>
+
 </ion-content>
+
+
