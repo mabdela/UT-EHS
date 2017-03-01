@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-
 import { NavController, ModalController, AlertController, LoadingController } from 'ionic-angular';
-
 import { Todos } from '../../../../providers/todos';
 import { Auth } from '../../../../providers/auth';
 
@@ -67,11 +65,6 @@ export class NotificationPage {
 
   }
 
-
-
-
-
-
   toggleDetails(data) {
     if (data.showDetails) {
       data.showDetails = false;
@@ -81,5 +74,6 @@ export class NotificationPage {
       data.icon = 'ios-remove-circle-outline';
     }
   }
+
 
 }

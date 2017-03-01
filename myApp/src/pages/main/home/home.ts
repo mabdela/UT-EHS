@@ -7,7 +7,7 @@ import { App, MenuController, NavParams, ToastController, LoadingController } fr
 
 import { Platform, AlertController, NavController } from 'ionic-angular';
 import { NFC, Ndef, IBeacon, BLE } from 'ionic-native';
-import {InAppBrowser, ThemeableBrowser} from 'ionic-native';
+import {InAppBrowser, ThemeableBrowser, LocalNotifications} from 'ionic-native';
 
 import {LoginPage}from '../../login-page/login-page'
 import {ActivityPage} from '../../activity/activity';
@@ -271,7 +271,7 @@ export class HomePage {
 
   }
   
-  disable(){
+  disableBeacon(){
 	  let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
 	  let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
 	  IBeacon.stopMonitoringForRegion(greenBeacon);
@@ -297,7 +297,14 @@ export class HomePage {
 		});
   }
 
-
+  schedule(){
+	  LocalNotifications.schedule({
+		 id:1,
+		 title: 'THIS IS A TEST',
+		 text: 'THIS IS THE BODY'
+	  });
+	  
+  }
 
 }
 
