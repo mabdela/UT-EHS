@@ -8,7 +8,7 @@ export class courseParse {
 constructor(private http: Http) { }
 
 getData(){
-	return this.http.get('assets/data/mydata.json')
+	return this.http.get('courseParse')
 		.map((res) => res.json());
 	}
 }

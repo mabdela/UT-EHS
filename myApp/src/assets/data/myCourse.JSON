@@ -1,0 +1,32 @@
+{
+	"myCourse": [
+		{
+			"Name" : "ECE361",
+			"Day" : "Monday",
+			"Time" : "12:00"
+		},
+		{
+			"Name": "ECE413", 
+			"Day" : "Tuesday",
+			"Time" : "10:00"
+
+		},
+		{
+			"Name":"ECE110",
+			"Day" : "Wednesday",
+			"Time" : "12:00"
+		
+		},
+		{
+			"Name" : "ECE342",
+			"Day" : "Thursday",
+			"Time" : "15:00"
+		}
+		,
+		{
+			"Name" : "ECE552",
+			"Day" : "Friday",
+			"Time" : "17:00"
+		}
+	]
+}

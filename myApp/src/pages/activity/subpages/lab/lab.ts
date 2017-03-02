@@ -1,7 +1,7 @@
-
-import { Component } from '@angular/core';
-import { courseParse } from '../../../../providers/courseParse';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Data } from '../../../../providers/data';
+import { LocalNotifications } from 'ionic-native';
 
 @Component({
   selector: 'lab',
@@ -9,15 +9,30 @@ import { NavController } from 'ionic-angular';
 })
 export class LabPage {
 
-  constructor(public parse: courseParse, public navCtrl: NavController) {
+  courses:any;
+  
+  constructor(public navCtrl: NavController, public dataService: Data) {
 
   }
   
-  course(){
-	  this.parse.getData().subscribe( (data) => {
-	    alert(JSON.stringify(data));
-	  });
+  ionViewDidLoad() {
+
+    this.dataService.loadCourse().then((data) => {
+	  
+	  console.log(JSON.stringify(data[0]["Name"]));
+      this.courses = data;
+
+    });
+  }
+  
+  Enable(){
+	  
 	  
   }
   
+  Disable(){
+	  
+	  
+	  
+  }
 }
