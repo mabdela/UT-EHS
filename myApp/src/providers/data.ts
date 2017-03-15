@@ -37,7 +37,7 @@ export class Data {
 
     return new Promise(resolve => {
 
-      this.http.get('assets/data/myCourse.json').map(res => res.json()).subscribe(data => {
+      this.http.get('assets/data/mycourse.json').map(res => res.json()).subscribe(data => {
         this.course = data.myCourse;
         resolve(this.course);
       });

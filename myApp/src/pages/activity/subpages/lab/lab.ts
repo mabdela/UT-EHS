@@ -16,11 +16,9 @@ export class LabPage {
   }
   
   ionViewDidLoad() {
-
-    this.dataService.loadCourse().then((data) => {
-	  
-	  console.log(JSON.stringify(data[1]["Name"]));
-      this.courses = data;
+    this.dataService.loadCourse().then((course) => {
+	  console.log(JSON.stringify(course[1]["Name"]));
+      this.courses = course;
 
     });
   }
