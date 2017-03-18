@@ -22,7 +22,7 @@ export class ActivityPage {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = EHSPage;
+  rootPage: any = LabPage;
 
 
   activePage:any;

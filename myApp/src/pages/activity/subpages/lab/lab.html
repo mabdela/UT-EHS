@@ -7,12 +7,33 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+<ion-card *ngFor="let course of courses">
+  <ion-card-header>
+	<!--<div class="courseName" [innerHTML]="course.Name"></div>
+	<ion-toggle (click)=schedule(i) item-right checked="false"></ion-toggle> -->
+	{{course.Name}}
+  </ion-card-header>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-card-content>
+	<p>Next lab is: </p>
+	<p>{{course.Day}}</p>
+	<p>{{course.Time}}</p>
+    <!-- <div class="Day" [innerHTML]="course.Day"></div>
+    <div class="Time" [innerHTML]="course.Time"></div> -->
+ </ion-card-content>
+
+</ion-card>
+
+
+<ion-content padding>
+	<button ion-button (click) = "Enable()">Set Lab Alerts</button>
+	<button ion-button (click) = "Disable()">Disable Lab Alerts </button>
 </ion-content>
+
+</ion-content>
+
+
+
