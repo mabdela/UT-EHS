@@ -22,6 +22,7 @@ import { TabsService } from '../providers/tabs.service';
 
 import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { Data } from '../providers/data';
+import { Past } from '../providers/past';
 
 import { TabsPage } from '../pages/main/tabs/tabs';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
@@ -85,7 +86,7 @@ const cloudSettings: CloudSettings = {
     SignupPage,
     TabsPage
   ],
-  providers: [Storage, Todos, Auth, TabsService, {provide: ErrorHandler, useClass: IonicErrorHandler}, Data]
+  providers: [Storage, Todos, Auth, TabsService, {provide: ErrorHandler, useClass: IonicErrorHandler}, Data, Past]
 })
 export class AppModule {}
 

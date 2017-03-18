@@ -10,13 +10,12 @@
 <ion-content>
 
   <ion-list>
-    <ion-item padding *ngFor="let d of data" (click)="toggleDetails(d)">
+    <ion-item padding *ngFor="let d of data" (click)="toggleDetails(d)" color="option">
       <ion-icon color="primary" item-right [name]="d.icon"></ion-icon>
       {{d.title}}
-      <div *ngIf="d.showDetails">{{d.message}}</div>
+      <div *ngIf="d.showDetails" color="light">{{d.message}}</div>
     </ion-item>
   </ion-list>
-
 
 
 </ion-content>

@@ -13,11 +13,6 @@
     <ion-card-content class="cards-md">
       <img src="assets/img/safety.jpg" />
     </ion-card-content>
-
-    <ion-item>
-      <button ion-button clear item-left>Button 1</button>
-      <button ion-button clear item-right>Button 2</button>
-    </ion-item>
   </ion-card>
 
   <ion-list>
@@ -52,6 +47,13 @@
       Beacons
       <button ion-button item-right outline icon-right (click)="beacon()">
         Detect
+      </button>
+    </ion-item>
+
+    <ion-item>
+      Beacons
+      <button ion-button item-right outline icon-right (click)="launch_themeable('https://utehs.herokuapp.com/safetychecklist')">
+        showpdf
       </button>
     </ion-item>
   </ion-list>

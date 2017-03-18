@@ -1,0 +1,11 @@
+{
+  "accidents": [
+
+    {
+      "date": "March 30, 2017",
+      "description": "On July 23, 2001, at 3:43 p.m., an accident occurred at the University of California, Irvine (UCI), located in Irvine, Orange County, California. The accident in a chemistry laboratory in Frederick Reines Hall (Room 2022) resulted in an injury to a doctoral student and a fire that caused approximately $3.5 million in damage including repair/refurbishment costs. The student, who was also a University employee doing work for a principal investigator’s (PI’s) funded project, received serious burns from a benzene vapor explosion in a fume hood. The student had been purifying benzene using a reflux/distillation apparatus. The system became overpressurized, and the student attempted to physically hold the distillation head on the distillation flask. The overpressurization caused the system to disassemble at the sintered glass fitting between the two components, and a fine mist of benzene was released into the fume hood, where an unknown ignition source ignited the benzene vapor, resulting in an explosion and subsequent fire. While the direct cause of the over-pressurization was not determined, the lack of a clear path from the distillation flask through the pressure-relief portion of the apparatus resulted in the system disassembling and releasing a fine mist of benzene.",
+      "readmore":"https://docs.google.com/gview?embedded=true&url=ehs.ucsb.edu/files/docs/ls/UCI_fire.pdf"
+    }
+
+  ]
+}

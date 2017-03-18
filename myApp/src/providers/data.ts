@@ -20,12 +20,31 @@ export class Data {
     return new Promise(resolve => {
 
       this.http.get('assets/data/questions.json').map(res => res.json()).subscribe(data => {
+
+
         this.data = data.questions;
+
+        for (var i = 0; i < this.data.length - 1; i++) {
+          var j = i + Math.floor(Math.random() * (this.data.length - i));
+
+          var temp = this.data[j];
+          this.data[j] = this.data[i];
+          this.data[i] = temp;
+        }
+        this.data.splice(0,10);
         resolve(this.data);
       });
 
+
+
     });
 
+
+
+
+
   }
+
+
 
 }

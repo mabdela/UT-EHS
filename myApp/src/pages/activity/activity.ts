@@ -9,10 +9,10 @@ import {NotificationPage} from './subpages/notification/notification';
 import { RefresherPage } from './subpages/refresher/refresher';
 import { EHSPage } from './subpages/ehs/ehs';
 
-import{HomePage} from '../main/home/home';
+import {LoginPage} from '../login-page/login-page';
 import { Auth } from '../../providers/auth';
 import { TabsService } from '../../providers/tabs.service';
-import {LoginPage} from '../login-page/login-page'
+
 
 @Component({
   templateUrl: 'activity.html'

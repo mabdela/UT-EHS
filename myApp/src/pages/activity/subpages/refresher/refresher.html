@@ -27,7 +27,7 @@
 
       <ion-list no-lines radio-group>
 
-        <ion-item *ngFor="let answer of question.answers; let i = index;">
+        <ion-item *ngFor="let answer of question.answers; let i = index;" color="option">
 
           <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
           <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected" [disabled]="hasAnswered"></ion-radio>
@@ -40,6 +40,7 @@
 
     <ion-slide>
       <h2>Final Score: {{score}}</h2>
+      <h2 color="danger">{{feedback}}</h2>
 
       <button (click)="restartQuiz()" ion-button full color="primary">Start Again</button>
 
@@ -48,5 +49,6 @@
   </ion-slides>
 
 </ion-content>
+
 
 

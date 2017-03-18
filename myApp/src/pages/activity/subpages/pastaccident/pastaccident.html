@@ -7,12 +7,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+<ion-content>
+  <ion-card>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-card-content *ngFor="let accidents of reports; let i = index;" >
+      <ion-card-title>
+        Past Accidents
+      </ion-card-title>
+            <p >{{ accidents.description }}</p>
+      <button ion-button (click)="launch_themeable('https://docs.google.com/gview?embedded=true&url=ehs.ucsb.edu/files/docs/ls/UCI_fire.pdf')">Read More</button>
+    </ion-card-content>
+
+
+  </ion-card>
 </ion-content>

@@ -12,6 +12,7 @@ export class RefresherPage {
 
   hasAnswered: boolean = false;
   score: number = 0;
+  feedback:string;
 
   slideOptions: any;
   questions: any;
@@ -54,6 +55,11 @@ export class RefresherPage {
 
     if(answer.correct){
       this.score++;
+    }
+    if(this.score<7){
+      this.feedback="You failed the quiz and you are recommended to take WHMIS training.";
+    }else{
+      this.feedback="Congradualtions you have passed the quiz.";
     }
 
     setTimeout(() => {
