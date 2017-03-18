@@ -54,7 +54,9 @@ export class LoginPage {
     this.authService.login(credentials).then((result) => {
       this.loading.dismiss();
       console.log(result);
+	  
 	  this.storage.set('user', this.email);
+	  console.log("Login page" + this.email);
       this.navCtrl.setRoot(ActivityPage);
     }, (err) => {
       this.loading.dismiss();
