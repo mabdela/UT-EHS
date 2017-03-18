@@ -5,22 +5,30 @@
     </button>
     <ion-title>Lab Schedule</ion-title>
   </ion-navbar>
+      <ion-segment>
+        <ion-segment-button (click) = "Enable()" value="puppies">
+          Set Lab Alerts
+        </ion-segment-button>
+        <ion-segment-button (click) = "Disable()" value="kittens">
+          Disable Lab Alerts
+        </ion-segment-button>
+      </ion-segment>
+
+
 </ion-header>
 
 
 <ion-content padding>
 
 <ion-card *ngFor="let course of courses">
-  <ion-card-header>
-	<!--<div class="courseName" [innerHTML]="course.Name"></div>
-	<ion-toggle (click)=schedule(i) item-right checked="false"></ion-toggle> -->
-	{{course.Name}}
-  </ion-card-header>
+
+  <ion-card-title>
+    {{course.Name}}
+  </ion-card-title>
 
   <ion-card-content>
-	<p>Next lab is: </p>
-	<p>{{course.Day}}</p>
-	<p>{{course.Time}}</p>
+	<p>Next lab date: {{course.Day}}</p>
+	<p>Time: {{course.Time}}</p>
     <!-- <div class="Day" [innerHTML]="course.Day"></div>
     <div class="Time" [innerHTML]="course.Time"></div> -->
  </ion-card-content>
@@ -28,10 +36,7 @@
 </ion-card>
 
 
-<ion-content padding>
-	<button ion-button (click) = "Enable()">Set Lab Alerts</button>
-	<button ion-button (click) = "Disable()">Disable Lab Alerts </button>
-</ion-content>
+
 
 </ion-content>
 
