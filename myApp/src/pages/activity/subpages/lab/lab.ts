@@ -19,15 +19,15 @@ export class LabPage {
   }
 
   ionViewDidLoad() {
-	  this.dataService.loadCourse().then((course) => {
-	  console.log(JSON.stringify(course[1]["Name"]));
-      this.courses = course;
-	  });
-	  
 	  this.storage.get('user').then((value) => {
 
         this.username = value;
-
+		
+		console.log("Inside the storage " + this.username);
+		this.dataService.loadCourse(this.username).then((course) => {
+		console.log(JSON.stringify(course[1]["Name"]));
+		this.courses = course;
+		});
       });
   }
   

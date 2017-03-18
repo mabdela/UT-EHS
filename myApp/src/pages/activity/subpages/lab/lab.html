@@ -19,18 +19,20 @@
 
 <ion-content class="cards-bg">
 
-<ion-card *ngFor="let course of courses">
+	
 
-  <ion-card-title>
-    {{course.Name}}
-  </ion-card-title>
+	<ion-card *ngFor="let course of courses">
 
-  <ion-card-content>
-	<p>Next lab date: {{course.Day}}</p>
-	<p>Time: {{course.Time}}</p>
-    <!-- <div class="Day" [innerHTML]="course.Day"></div>
-    <div class="Time" [innerHTML]="course.Time"></div> -->
- </ion-card-content>
+	  <ion-card-title>
+		{{course.Name}}
+	  </ion-card-title>
+
+	  <ion-card-content>
+		<p>Next lab date: {{course.Day}}</p>
+		<p>Time: {{course.Time}}</p>
+		<!-- <div class="Day" [innerHTML]="course.Day"></div>
+		<div class="Time" [innerHTML]="course.Time"></div> -->
+	 </ion-card-content>
 
 </ion-card>
 

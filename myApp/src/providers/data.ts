@@ -40,13 +40,9 @@ export class Data {
 
     });
 
-
-
-
-
   }
   
-    loadCourse(){
+    loadCourse(file){
 
     if(this.course){
       return Promise.resolve(this.course);
@@ -54,7 +50,8 @@ export class Data {
 
     return new Promise(resolve => {
 
-      this.http.get('assets/data/mycourse.json').map(res => res.json()).subscribe(data => {
+	  console.log("Load Course "+ file);
+      this.http.get('assets/data/'+file+'.json').map(res => res.json()).subscribe(data => {
         this.course = data.myCourse;
         resolve(this.course);
       });
@@ -62,7 +59,5 @@ export class Data {
     });
 
   }
-
-
 
 }
