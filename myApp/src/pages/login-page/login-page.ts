@@ -4,6 +4,9 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { Auth } from '../../providers/auth';
 import { ActivityPage } from '../activity/activity';
 import { SignupPage } from '../signup-page/signup-page';
+import { LabPage } from '../activity/subpages/lab/lab'
+import { Storage } from '@ionic/storage';
+import { Events} from 'ionic-angular';
 
 @Component({
   selector: 'login-page',
@@ -15,7 +18,7 @@ export class LoginPage {
   password: string;
   loading: any;
 
-  constructor(public navCtrl: NavController, public authService: Auth, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public authService: Auth, public loadingCtrl: LoadingController, public storage: Storage) {
 
   }
 
@@ -34,6 +37,10 @@ export class LoginPage {
     });
 
   }
+  
+  loaduser(user){
+	  let data = user;
+  }
 
   login(){
 
@@ -47,6 +54,7 @@ export class LoginPage {
     this.authService.login(credentials).then((result) => {
       this.loading.dismiss();
       console.log(result);
+	  this.storage.set('user', this.email);
       this.navCtrl.setRoot(ActivityPage);
     }, (err) => {
       this.loading.dismiss();
@@ -68,5 +76,9 @@ export class LoginPage {
     this.loading.present();
 
   }
+  
+    
+
+  
 
 }

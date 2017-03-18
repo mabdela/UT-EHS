@@ -4,14 +4,24 @@
   ion-card {
     position: relative;
     text-align: left;
+	  ion-item{
+	ion-icon{
+
+		position:relative !important;
+		left: 4px !important;
+	}
+  
   }
 
+  }
+  
   .card-title {
     font-size: 1.60em;
     width: 100%;
     font-weight: bold;
     color: #000;
   }
+  
 
 
   .wclor{
@@ -20,6 +30,7 @@
   p{
     font-size: 1.20em;
   }
+  
 
 
 }

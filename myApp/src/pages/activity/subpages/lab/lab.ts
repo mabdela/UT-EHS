@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Data } from '../../../../providers/data';
+import { NavController, Events} from 'ionic-angular';
+import { Data} from '../../../../providers/data';
+import { Storage } from '@ionic/storage';
 import { LocalNotifications } from 'ionic-native';
 
 @Component({
@@ -10,23 +11,30 @@ import { LocalNotifications } from 'ionic-native';
 export class LabPage {
 
   courses:any;
+  username:any;
   
-  constructor(public navCtrl: NavController, public dataService: Data) {
+  
+  constructor(public navCtrl: NavController, public dataService: Data, public storage: Storage) {
 
   }
-  
+
   ionViewDidLoad() {
-    this.dataService.loadCourse().then((course) => {
+	  this.dataService.loadCourse().then((course) => {
 	  console.log(JSON.stringify(course[1]["Name"]));
       this.courses = course;
+	  });
+	  
+	  this.storage.get('user').then((value) => {
 
-    });
+        this.username = value;
+
+      });
   }
   
   Enable(){
 	  LocalNotifications.schedule([{
 		  id: 1,
-		  text: "NOTIFICATION",
+		  text: "ECE 361 is coming up",
 	  },
 	  {
 		  id: 2,

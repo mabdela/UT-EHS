@@ -23,6 +23,8 @@ export class HomePage {
 
   //private nav:NavController = null;//added
   public tag:any;
+  ListenerAdded:number;
+  //beaconCount:number;
 
   static get parameters() {
     return [[Platform], [NavController]];
@@ -33,8 +35,9 @@ export class HomePage {
     //this.menu.swipeEnable(false);//side menu disable
     this.platform = platform;
     this.navCtrl = navCtrl;
-	//this.beaconCount = 0;
+	//this.beaconCount = 0
 	this.tag = {};
+	this.ListenerAdded = 0;
 
   }
 
@@ -126,8 +129,10 @@ export class HomePage {
     NFC.enabled()
 	//Success
       .then(() => {
-
-			  this.addListenNFC();
+		  if(this.ListenerAdded == 0){
+			this.addListenNFC();  
+		  }
+			
 
       })
 	  //failure
@@ -158,6 +163,7 @@ export class HomePage {
   }
 
   addListenNFC() {
+	  this.ListenerAdded = 1;
 	   NFC.addNdefListener().subscribe(nfcData => {
 		   this.parse(nfcData);
 	});
@@ -184,8 +190,10 @@ export class HomePage {
 		  //alert(this.beaconCount);
 		  //alert("hello");
 		  //if(this.beaconCount%2 == 0){ //Enable monitoring
+			
+					this.detect();	
 				
-				this.detect();
+				
 		 // }
 		  //else{ //disable monitoring
 			//  this.disable();
