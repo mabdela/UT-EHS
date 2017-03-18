@@ -27,7 +27,7 @@
 
       <ion-list no-lines radio-group>
 
-        <ion-item *ngFor="let answer of question.answers; let i = index;" color="option">
+        <ion-item *ngFor="let answer of question.answers; let i = index;" color="option" text-wrap>
 
           <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
           <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected" [disabled]="hasAnswered"></ion-radio>

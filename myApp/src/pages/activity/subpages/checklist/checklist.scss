@@ -1,37 +1,21 @@
 .card-background-page {
 
+  ion-icon{
 
-  ion-card {
-    position: relative;
-    text-align: left;
-	  ion-item{
-	ion-icon{
-
-		position:relative !important;
-		left: 4px !important;
-	}
-  
+    position:absolute !important;
+    float:left!important;
   }
 
-  }
-  
-  .card-title {
-    font-size: 1.60em;
-    width: 100%;
-    font-weight: bold;
-    color: #000;
-  }
-  
 
 
-  .wclor{
-    color: #fff;
-  }
   p{
     font-size: 1.20em;
   }
-  
 
 
+}
+
+ion-card.cards-list-demo ion-card-header {
+  color: map-get($colors, primary);
 }
 
