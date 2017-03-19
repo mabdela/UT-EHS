@@ -33127,7 +33127,12 @@ ion-list ion-icon:before {
 }
 
 ion-card-content {
-  font-size: 1.20em;
+  font-size: 1.2em;
+  text-align: justify;
+}
+
+p {
+  font-size: 1.4em;
   text-align: justify;
 }
 
@@ -33304,17 +33309,12 @@ ion-label, ion-radio, ion-list {
   font-size: 1.20em;
 }
 
-.ios signup-page ion-content, .md signup-page ion-content {
-  background-color: #849BB3;
+button {
+  width: 24%;
 }
 
-.ios signup-page scroll-content, .md signup-page scroll-content {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+.ios signup-page ion-content, .md signup-page ion-content {
+  background-color: #849BB3;
 }
 
 .ios signup-page ion-item, .md signup-page ion-item {
