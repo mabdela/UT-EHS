@@ -24,9 +24,13 @@ export class LabPage {
         this.username = value;
 		
 		console.log("Inside the storage " + this.username);
+		
+		if(this.username == null){
+			this.username == "mycourse";
+		}
 		this.dataService.loadCourse(this.username).then((course) => {
-		console.log(JSON.stringify(course[1]["Name"]));
-		this.courses = course;
+			console.log(JSON.stringify(course[1]["Name"]));
+			this.courses = course;
 		});
       });
   }

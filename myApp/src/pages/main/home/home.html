@@ -18,12 +18,12 @@
   <ion-list>
     <ion-item>
       Log In
-      <button ion-button item-right outline (click)="loginPage()">Portal</button>
+      <button ion-button item-right (click)="loginPage()">Portal</button>
     </ion-item>
 
     <ion-item>
       Scan Item
-      <button ion-button item-right outline (click)="scan()">
+      <button ion-button item-right  (click)="scan()">
 
         Picture
       </button>
@@ -31,29 +31,15 @@
 
         <ion-item>
       Tap Item
-      <button ion-button item-right outline icon-right (click)="nfcPage()">
+      <button ion-button item-right  icon-right (click)="nfcPage()">
         NFC
       </button>
     </ion-item>
 
 	<ion-item>
-      Hold NFC Tag to back
-      <button ion-button item-right outline icon-right (click)="nfcWrite()">
-        NFC Write
-      </button>
-    </ion-item>
-
-	<ion-item>
       Beacons
-      <button ion-button item-right outline icon-right (click)="beacon()">
+      <button ion-button item-right icon-right (click)="beacon()">
         Detect
-      </button>
-  </ion-item>
-
-	<ion-item>
-      Notify
-      <button ion-button item-right outline icon-right (click)="schedule()">
-        Notify
       </button>
   </ion-item>
 

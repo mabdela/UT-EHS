@@ -24,7 +24,8 @@ export class HomePage {
   //private nav:NavController = null;//added
   public tag:any;
   ListenerAdded:number;
-  //beaconCount:number;
+  greenBeacon:number;
+  blueBeacon:number;
 
   static get parameters() {
     return [[Platform], [NavController]];
@@ -38,6 +39,8 @@ export class HomePage {
 	//this.beaconCount = 0
 	this.tag = {};
 	this.ListenerAdded = 0;
+	this.blueBeacon = 0;
+	this.greenBeacon = 0;
 
   }
 
@@ -129,6 +132,7 @@ export class HomePage {
     NFC.enabled()
 	//Success
       .then(() => {
+		  console.log(this.ListenerAdded);
 		  if(this.ListenerAdded == 0){
 			this.addListenNFC();  
 		  }
@@ -231,11 +235,11 @@ export class HomePage {
 			let page = data.region.identifier;
 			//alert("ENTER REGION " + page);
 		    //will need some lookup table for the different beacons
-			if(page == "LabGoggles"){
+			if(page == "LabGoggles" && !greenBeacon){
 					alert(page);
 					//this.launch_themeable("https://ehs.utoronto.ca/");
 			}
-			if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
+			if(page == "LabCoat" && !blueBeacon){ //Think there may be a bug if themable browser gets launched twice
 					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
 			}
 			
@@ -253,8 +257,10 @@ export class HomePage {
 			if(page == "LabGoggles"){
 					//maybe add a variable here so only opens once every day
 					//this.launch_themeable("https://ehs.utoronto.ca/");
+					this.greenBeacon = 1;
 			}
 			if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
+					this.blueBeacon = 1;
 					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
 			}
 			
@@ -294,7 +300,7 @@ export class HomePage {
     return result;
   }
   
-    nfcWrite(){
+   nfcWrite(){
 	  let message = Ndef.textRecord('Hello world');
 	  NFC.write([message])
 		.then( ()=> {
@@ -303,15 +309,6 @@ export class HomePage {
 		.catch( () =>{
 			alert("failure");
 		});
-  }
-
-  schedule(){
-	  LocalNotifications.schedule({
-		 id:1,
-		 title: 'THIS IS A TEST',
-		 text: 'THIS IS THE BODY'
-	  });
-	  
   }
 
 }
