@@ -1,25 +1,27 @@
-.ios, .md {
-
-  page-home {
 
     ion-slide {
       align-items: flex-start;
+      padding-top: 0;
+      margin-top: 4%!important;
     }
 
     ion-item {
-      margin-bottom: 2px;
+
       font-size: 1.2em;
       background-color: map-get($colors, primary);
     }
 
-    flash-card {
+    flash-card, .flash-card-back, .flash-card-front {
       color: #000;
-
-      img {
-        width: 70%;
-        height: auto;
-      }
+      width:96%;
+      padding-top: 0!important;
+      margin-top: 0!important;
     }
+    ion-label, ion-radio, ion-list{
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
 
     .start-slide {
       justify-content: center;
@@ -30,7 +32,3 @@
         font-weight: bold;
       }
     }
-
-  }
-
-}

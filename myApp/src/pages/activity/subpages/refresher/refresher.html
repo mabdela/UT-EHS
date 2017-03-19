@@ -16,12 +16,11 @@
       <button ion-button color="primary" (click)="nextSlide()">Start!</button>
     </ion-slide>
 
-    <ion-slide *ngFor="let question of questions; let i = index;">
-
-      <h4>Question {{i+1}}</h4>
+    <ion-slide *ngFor="let question of questions; let i = index;" item-text-wrap>
 
       <flash-card [isFlipped]="question.flashCardFlipped">
-        <div class="flash-card-front" [innerHTML]="question.flashCardFront"></div>
+
+        <div class="flash-card-front"  text-wrap><strong>Question {{i+1}}: </strong>{{question.flashCardFront}}</div>
         <div class="flash-card-back" [innerHTML]="question.flashCardBack"></div>
       </flash-card>
 

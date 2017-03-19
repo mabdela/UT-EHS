@@ -1,0 +1,198 @@
+{
+  "questions": [
+
+    {
+      "flashCardFront": "IARC stands for:",
+      "flashCardBack": "International Agency for Research on Cancer.",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "I Am Really Confused.", "correct": false, "selected": false},
+        {"answer": "International Association of Research Chemists.", "correct": false, "selected": false},
+        {"answer": "Is Anyone Really Concerned.", "correct": false, "selected": false},
+        {"answer": "International Agency for Research on Cancer.", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Occupational exposure limits (OEL's) are:",
+      "flashCardBack": "Academically derived maximum limits with no legal force in Ontario.",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "Not applicable to Universities.", "correct": false, "selected": false},
+        {"answer": "The legal maximum exposure limits in Ontario for a typical 40-hour work week, 8 hours a day.", "correct": false, "selected": false},
+        {"answer": "Academically derived maximum limits with no legal force in Ontario.", "correct": true, "selected": false},
+        {"answer": "The minimum level that a worker in Ontario should be exposed to for a 40-hour week with 8 hour days.", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "What does WHMIS stand for?",
+      "flashCardBack": "Workplace Hazardous Materials Information System",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "Workers and Hazardous Materials in Science", "correct": false, "selected": false},
+        {"answer": "Workplace Hazardous Materials Information System", "correct": true, "selected": false},
+        {"answer": "Workers Have Made It Safe", "correct": false, "selected": false},
+        {"answer": "Workplace Harmful Materials Information Science", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Hazards of cryogens include the following:",
+      "flashCardBack": "Frostbite, asphyxiation, chemical reaction.",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "Frostbite, asphyxiation, chemical reaction.", "correct": true, "selected": false},
+        {"answer": "Frostbite, asphyxiation, eye injury, liquid oxygen concentration.", "correct": false, "selected": false},
+        {"answer": "Heat burns and sunstroke.", "correct": false, "selected": false},
+        {"answer": "Frostbite, with cool smoke effects in drinks or pools.", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "If a supplier WHMIS label is missing or damaged, it should be promptly replaced with any of the following:",
+      "flashCardBack": "spare supplier WHMIS label or section 2 of the SDS",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "spare supplier WHMIS label or section 2 of the SDS", "correct": true, "selected": false},
+        {"answer": "WHMIS hazard symbol", "correct": false, "selected": false},
+        {"answer": "MSDS", "correct": false, "selected": false},
+        {"answer": "workplace label", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Eyewashes need to be tested because:",
+      "flashCardBack": "Water can be turned off accidentally (e.g. during maintenance work) and will not be available in an emergency.",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "It provides work for lab staff.", "correct": false, "selected": false},
+        {"answer": "It is fun to watch the water flow.", "correct": false, "selected": false},
+        {"answer": "Water can be turned off accidentally (e.g. during maintenance work) and will not be available in an emergency.", "correct": true, "selected": false},
+        {"answer": "It is part of the scientific process", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "The is good evidence that nanomaterials produce amplified or more targeted effects versus larger particle size versions of the same material.",
+      "flashCardBack": "False",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": false, "selected": false},
+        {"answer": "False", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Students are not protected by the University Health and Safety Policy because it only covers employees.",
+      "flashCardBack": "False",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": false, "selected": false},
+        {"answer": "False", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "TA's are relied upon to provide guidance for activities that undergraduate students may not be able to conduct on their own.",
+      "flashCardBack": "True",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": true, "selected": false},
+        {"answer": "False", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "No permit is ever required for use of chemicals.",
+      "flashCardBack": "False",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": false, "selected": false},
+        {"answer": "False", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "There are no special requirements around building, renovating or decommissioning a lab.",
+      "flashCardBack": "False",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": false, "selected": false},
+        {"answer": "False", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Eyewashes need to be tested regularly, and that testing needs to be noted on a tag or sheet (documented).",
+      "flashCardBack": "True",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": true, "selected": false},
+        {"answer": "False", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "It is OK to go to the lunch room in your lab coat and gloves.",
+      "flashCardBack": "False",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": false, "selected": false},
+        {"answer": "False", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "There is no need to use nanomaterials in a fume hood or biosafety cabinet.",
+      "flashCardBack": "False",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": false, "selected": false},
+        {"answer": "False", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "The labels on purchased lasers are always correct.",
+      "flashCardBack": "False",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": false, "selected": false},
+        {"answer": "False", "correct": true, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "A TWA is the legally acceptable average airborne concentration for a 40-hour work week.",
+      "flashCardBack": "True",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": true, "selected": false},
+        {"answer": "False", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Accidentally mixing organic solvents with acid waste can lead to an explosion.",
+      "flashCardBack": "True",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": true, "selected": false},
+        {"answer": "False", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "You need radiation safety training to use an open source above the exemption limit.",
+      "flashCardBack": "True",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": true, "selected": false},
+        {"answer": "False", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Safety glasses are part of basic lab PPE.",
+      "flashCardBack": "True",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": true, "selected": false},
+        {"answer": "False", "correct": false, "selected": false}
+      ]
+    },
+    {
+      "flashCardFront": "Not purging oxygen from a sealed tube before inserting it in liquid nitrogen can result in an explosion.",
+      "flashCardBack": "True",
+      "flashCardFlipped": false,
+      "answers": [
+        {"answer": "True", "correct": true, "selected": false},
+        {"answer": "False", "correct": false, "selected": false}
+      ]
+    }
+
+  ]
+}

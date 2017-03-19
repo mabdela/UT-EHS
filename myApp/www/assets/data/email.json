@@ -1,0 +1,42 @@
+{
+	"myCourse": [
+		{
+			"Name" : "APS490",
+			"Day" : "Monday",
+			"Time" : "12:00",
+			"firstAt" : "monday_12_pm",
+			"frequency" : "biweekly"
+		},
+		{
+			"Name": "ECE413", 
+			"Day" : "Tuesday",
+			"Time" : "10:00",
+			"firstAt" : "tuesday_10_am",
+			"frequency" : "biweekly"
+
+		},
+		{
+			"Name":"ECE110",
+			"Day" : "Wednesday",
+			"Time" : "12:00",
+			"firstAt" : "wednesday_12_pm",
+			"frequency" : "biweekly"
+		
+		},
+		{
+			"Name" : "ECE342",
+			"Day" : "Thursday",
+			"Time" : "15:00",
+			"firstAt" : "thursday_3_pm",
+			"frequency" : "biweekly"
+		}
+		,
+		{
+			"Name" : "ECE552",
+			"Day" : "Friday",
+			"Time" : "17:00",
+			"firstAt" : "Friday_5_pm",
+			"frequency" : "biweekly"
+		}
+	]
+}

@@ -1,3 +1,43 @@
-page-page2 {
+.card-background-page {
+
+
+  ion-card {
+    position: relative;
+    text-align: left;
+  }
+
+  .card-title {
+    font-size: 1.60em;
+    width: 100%;
+    font-weight: bold;
+    color: #000;
+  }
+
+
+  .wclor{
+    color: #fff;
+  }
+  p{
+    font-size: 1.20em;
+    text-align: justify;
+  }
+
+  .title{
+    font-weight: bold;
+    margin: 2%;
+  }
+  .link{
+    color:blue;
+    font-style: italic;
+  }
+  ul>li{
+    padding-bottom:2%;
+    padding-left: 0;
+    margin: 0;
+  }
+  ul{
+    padding-left: 6%;
+  }
+
 
 }

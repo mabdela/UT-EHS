@@ -3,12 +3,7 @@
   login-page {
 
     ion-content {
-      background-color: map-get($colors, secondary);
-    }
-
-    scroll-content {
-      display: flex;
-      flex-direction: column;
+      background-color: map-get($colors, login);
     }
 
     ion-row {

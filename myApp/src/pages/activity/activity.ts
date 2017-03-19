@@ -38,11 +38,11 @@ export class ActivityPage {
 
     // used for an example of ngFor and navigation
     this.pages = [
-	    { title: 'EHS Resources', component: EHSPage },
+	    { title: 'Lab Schedule', component: LabPage },
       { title: 'Safety Checklist', component: ChecklistPage },
       { title: 'Notifications', component: NotificationPage },
       { title: 'Refresher Quiz', component: RefresherPage },
-      { title: 'Lab Schedule', component: LabPage },
+      { title: 'EHS Resources', component: EHSPage },
       { title: 'Past Accidents', component: PastAccidentPage },
       { title: 'Report Accident', component: ReportAccidentPage }
     ];

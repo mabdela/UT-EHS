@@ -7,17 +7,49 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content class="card-background-page cards-sm">
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-card-title>
+        Accidents/Incidents Involving:
+      </ion-card-title>
+
+      <p class="title">1. Employees</p>
+      <p>Include all full-time, part-time, sessional, casual employees and graduate teaching assistants.</p>
+
+      <a class="link" (click)="launch_themeable('http://ehs.utoronto.ca/report-an-incident/online-accidentincident-eform-for-employees/')">Online e-form for Reporting Incidents Involving Employees</a>
+
+      <p class="title">2. Students, Contractors and Visitors</p>
+      <p>Include undergraduate students, graduate students (except when performing TA duties, when they are employees), visitors and members of the general public.</p>
+
+
+
+      <a class="link" (click)="launch_themeable('http://ehs.utoronto.ca/report-an-incident/online-accidentincident-eform-for-students-contractors-and-visitors/')">Online e-form for Reporting Incidents Involving Students, Contractors and Visitors</a>
+
+
+      <p class="title"> 3. Students on Unpaid Work Placements</p>
+
+       <ul><li>Contact the Health and Well-being Office at 416.978.2149.</li></ul>
+
+
+
+      <p class="title">4. Reporting of Death or Critical Injury</p>
+
+
+      <ul>
+        <li>procure immediate medical attention at 9.911</li>
+        <li>notify the University of Toronto Police at 978.2222 for the St. George Campus, or 416.287.7333 for Scarborough Campus, or 905.569.4333 for Mississauga.</li>
+        <li>notify the Office of Environmental Health and Safety at 416.978.4467 (who will liaise with the Ministry of Labour)</li>
+        <li>notify the Health & Well-Being Programs & Services at 416.978.8804</li>
+        <li>notify the appropriate joint health and safety committee for the workplace</li>
+      </ul>
+
+
+    </ion-card-content>
+
+
+  </ion-card>
+
 </ion-content>
