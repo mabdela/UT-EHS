@@ -26,6 +26,7 @@ export class NotificationPage {
 
     this.todoService.getTodos().then((result) => {
       this.data = result;
+      console.log(this.data);
     }, (err) => {
       console.log("not allowed");
     });

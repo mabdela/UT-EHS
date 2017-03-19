@@ -12,6 +12,11 @@ import {InAppBrowser, ThemeableBrowser, LocalNotifications} from 'ionic-native';
 import {LoginPage}from '../../login-page/login-page'
 import {ActivityPage} from '../../activity/activity';
 
+import { Todos } from '../../../providers/todos';
+import { Auth } from '../../../providers/auth';
+
+import { Http, Headers } from '@angular/http';
+
 declare var cordova:any;
 
 @Component({
@@ -26,13 +31,16 @@ export class HomePage {
   ListenerAdded:number;
   greenBeacon:number;
   blueBeacon:number;
+  data:any;
+  loading: any;
+  temp:any;
 
   static get parameters() {
     return [[Platform], [NavController]];
   }
 
 
-  constructor( private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone, public menu: MenuController , public app: App) {
+  constructor( private platform: Platform, public codeService: Todos, public http: Http, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone, public menu: MenuController , public app: App, public authService: Auth) {
     //this.menu.swipeEnable(false);//side menu disable
     this.platform = platform;
     this.navCtrl = navCtrl;
@@ -41,6 +49,23 @@ export class HomePage {
 	this.ListenerAdded = 0;
 	this.blueBeacon = 0;
 	this.greenBeacon = 0;
+
+
+
+  }
+
+  ionViewDidLoad(){
+    console.log("Inside ionViewDidLoad()");
+    console.log("Inside data: "+this.temp);
+
+
+
+      this.codeService.getTodos().then((result) => {
+        this.data = result;
+        console.log("this is " + this.data);
+      }, (err) => {
+        console.log("not allowed");
+      });
 
   }
 
@@ -134,9 +159,9 @@ export class HomePage {
       .then(() => {
 		  console.log(this.ListenerAdded);
 		  if(this.ListenerAdded == 0){
-			this.addListenNFC();  
+			this.addListenNFC();
 		  }
-			
+
 
       })
 	  //failure
@@ -194,24 +219,24 @@ export class HomePage {
 		  //alert(this.beaconCount);
 		  //alert("hello");
 		  //if(this.beaconCount%2 == 0){ //Enable monitoring
-			
-					this.detect();	
-				
-				
+
+					this.detect();
+
+
 		 // }
 		  //else{ //disable monitoring
 			//  this.disable();
 		  //}
-		
-		
+
+
 		//this.beaconCount++;
 	  })
 	  .catch( () => {
 		alert("Disabled");
 		BLE.showBluetoothSettings();
 	  });
-	  
-	  
+
+
 
   }
 
@@ -227,7 +252,7 @@ export class HomePage {
 	   data => {console.log('didStartMonitoringForRegion: ', data);}
 		//error => console.error();
 	  );
-	  
+
 	delegate.didEnterRegion()
 	  .subscribe(
 		data => {
@@ -242,11 +267,11 @@ export class HomePage {
 			if(page == "LabCoat" && !blueBeacon){ //Think there may be a bug if themable browser gets launched twice
 					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
 			}
-			
+
 		}
 	  );
-	  
-	  
+
+
 	  delegate.didExitRegion()
 	  .subscribe(
 		data => {
@@ -263,20 +288,20 @@ export class HomePage {
 					this.blueBeacon = 1;
 					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
 			}
-			
+
 		}
 	  );
-	
+
 
 	let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
 	let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
-	
+
 	IBeacon.startMonitoringForRegion(blueBeacon)
 	  .then(
 		(data) => {console.log('startMonitoringForRegion: ' + data);
 		}
 	  );
-	  
+
 	  IBeacon.startMonitoringForRegion(greenBeacon)
 	  .then(
 		(data) => {console.log('startMonitoringForRegion: ' + data);
@@ -284,7 +309,7 @@ export class HomePage {
 	  );
 
   }
-  
+
   disableBeacon(){
 	  let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
 	  let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
@@ -299,7 +324,7 @@ export class HomePage {
     }
     return result;
   }
-  
+
    nfcWrite(){
 	  let message = Ndef.textRecord('Hello world');
 	  NFC.write([message])

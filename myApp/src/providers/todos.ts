@@ -12,6 +12,8 @@ export class Todos {
 
   getTodos(){
 
+    console.log("inside getTodos()");
+
     return new Promise((resolve, reject) => {
 
       let headers = new Headers();

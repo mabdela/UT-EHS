@@ -17,6 +17,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../pages/login-page/login-page';
 import { SignupPage } from '../pages/signup-page/signup-page';
 import { Todos } from '../providers/todos';
+import { Codes } from '../providers/codes';
 import { Auth } from '../providers/auth';
 import { TabsService } from '../providers/tabs.service';
 
@@ -86,7 +87,7 @@ const cloudSettings: CloudSettings = {
     SignupPage,
     TabsPage
   ],
-  providers: [Storage, Todos, Auth, TabsService, {provide: ErrorHandler, useClass: IonicErrorHandler}, Data, Past]
+  providers: [Storage, Todos, Auth, TabsService, {provide: ErrorHandler, useClass: IonicErrorHandler}, Data, Past, Codes]
 })
 export class AppModule {}
 

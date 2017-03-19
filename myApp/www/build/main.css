@@ -33309,8 +33309,12 @@ ion-label, ion-radio, ion-list {
   font-size: 1.20em;
 }
 
-button {
+.Btn {
   width: 24%;
+}
+
+ion-card, ion-card-content {
+  background-color: whitesmoke;
 }
 
 .ios signup-page ion-content, .md signup-page ion-content {
