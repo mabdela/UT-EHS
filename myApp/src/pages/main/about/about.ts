@@ -9,10 +9,12 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
+
   constructor(public navCtrl: NavController) {
 
 
   }
+
 
 
 

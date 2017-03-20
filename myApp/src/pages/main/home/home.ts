@@ -1,6 +1,6 @@
-import { Component, NgZone } from '@angular/core';
 
-//import {ActivityPage} from '../../activity/activity';
+
+
 //The last four to control the side menu
 
 import { App, MenuController, NavParams, ToastController, LoadingController } from 'ionic-angular';
@@ -9,13 +9,10 @@ import { Platform, AlertController, NavController } from 'ionic-angular';
 import { NFC, Ndef, IBeacon, BLE } from 'ionic-native';
 import {InAppBrowser, ThemeableBrowser, LocalNotifications} from 'ionic-native';
 
-import {LoginPage}from '../../login-page/login-page'
-import {ActivityPage} from '../../activity/activity';
-
-import { Todos } from '../../../providers/todos';
-import { Auth } from '../../../providers/auth';
-
-import { Http, Headers } from '@angular/http';
+import {LoginPage}from '../../login-page/login-page';
+import { Component, NgZone } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 declare var cordova:any;
 
@@ -27,59 +24,60 @@ declare var cordova:any;
 export class HomePage {
 
   //private nav:NavController = null;//added
+  //private nav:NavController = null;//added
+  data:any;
   public tag:any;
   ListenerAdded:number;
   greenBeacon:number;
   blueBeacon:number;
-  data:any;
-  loading: any;
-  temp:any;
 
-  static get parameters() {
+
+
+ /* static get parameters() {
     return [[Platform], [NavController]];
-  }
+  }*/
 
 
-  constructor( private platform: Platform, public codeService: Todos, public http: Http, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone, public menu: MenuController , public app: App, public authService: Auth) {
-    //this.menu.swipeEnable(false);//side menu disable
+  constructor( private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone, public http: Http, public menu: MenuController , public app: App) {
+
+        //this.menu.swipeEnable(false);//side menu disable
     this.platform = platform;
     this.navCtrl = navCtrl;
-	//this.beaconCount = 0
-	this.tag = {};
-	this.ListenerAdded = 0;
-	this.blueBeacon = 0;
-	this.greenBeacon = 0;
-
+    //this.beaconCount = 0
+    this.tag = {};
+    this.ListenerAdded = 0;
+    this.blueBeacon = 0;
+    this.greenBeacon = 0
 
 
   }
 
+
   ionViewDidLoad(){
-    console.log("Inside ionViewDidLoad()");
-    console.log("Inside data: "+this.temp);
 
+    this.http.get('http://utehs.herokuapp.com/getCodes').map(res => res.json()).subscribe(data => {
+        this.data=data;
+        console.log(this.data);
+      },
+      err => {
+        console.log("Oops!");
+      }
+    );
 
-
-      this.codeService.getTodos().then((result) => {
-        this.data = result;
-        console.log("this is " + this.data);
-      }, (err) => {
-        console.log("not allowed");
-      });
 
   }
 
 
 
   loginPage(){
-   // let nav = this.app.getRootNav();
-  //nav.setRoot(LoginPage);
+    // let nav = this.app.getRootNav();
+    //nav.setRoot(LoginPage);
     this.navCtrl.push(LoginPage);
   }
 
- /* activityPage(){
-    this.navCtrl.push(ActivityPage);
-  }*/
+  /* activityPage(){
+   this.navCtrl.push(ActivityPage);
+   }*/
 
   launch_themeable(arg){
     let options = {
@@ -109,10 +107,25 @@ export class HomePage {
 
   }
 
+
   scan() {
     this.platform.ready().then(() => {
       cordova.plugins.barcodeScanner.scan((result) => {
 
+        var counter=0;
+
+        for(counter; counter<this.data.length; counter++){
+          if(this.data[counter].code==result.text){
+            this.launch_themeable(this.data[counter].resource);
+            break;
+          }
+        }
+        if(counter==this.data.length){
+          alert("There is no resource for the given scan item.");
+        }
+
+
+/*
         //A simple if statement that calls launch_themeable() to display web pages.
 
         if(result.text=="Lab Coat Guidelines"){
@@ -134,7 +147,7 @@ export class HomePage {
 
           alert("Scan Results"+ ': ' +result.text);
         }
-
+*/
 
 
       }, (error) => {
@@ -155,166 +168,166 @@ export class HomePage {
   //Add a variable so can only added lisenter once
   checkNFC() {
     NFC.enabled()
-	//Success
+    //Success
       .then(() => {
-		  console.log(this.ListenerAdded);
-		  if(this.ListenerAdded == 0){
-			this.addListenNFC();
-		  }
+        console.log(this.ListenerAdded);
+        if(this.ListenerAdded == 0){
+          this.addListenNFC();
+        }
 
 
       })
-	  //failure
+      //failure
       .catch(() => {
 
-		  //confirm alert doesn't work after merge
-/* 		let confirm = this.alertCtrl.create({
-		title: 'NFC is currently disabled',
-		message: 'Please enable NFC',
-		buttons: [
-			{
-			  text: 'Cancel'
-			},
-			{
-			  text: 'Go to Settings',
-			  handler: () => { */
+        //confirm alert doesn't work after merge
+        /* 		let confirm = this.alertCtrl.create({
+         title: 'NFC is currently disabled',
+         message: 'Please enable NFC',
+         buttons: [
+         {
+         text: 'Cancel'
+         },
+         {
+         text: 'Go to Settings',
+         handler: () => { */
 
-			  //use basic alert for now
-			  alert("Please enable NFC");
-				NFC.showSettings();;
-/* 				}
-			}
-		]
-		});
-		confirm.present(); */
+        //use basic alert for now
+        alert("Please enable NFC");
+        NFC.showSettings();;
+        /* 				}
+         }
+         ]
+         });
+         confirm.present(); */
 
-	  });
+      });
   }
 
   addListenNFC() {
-	  this.ListenerAdded = 1;
-	   NFC.addNdefListener().subscribe(nfcData => {
-		   this.parse(nfcData);
-	});
+    this.ListenerAdded = 1;
+    NFC.addNdefListener().subscribe(nfcData => {
+      this.parse(nfcData);
+    });
   }
 
 
   parse(nfcData){
-	  let payload = nfcData.tag.ndefMessage[0]["payload"];
-	  let string_value = this.bin2string(payload);
-	  alert("Receved NFC tag: " + string_value);
-	  this.launch_themeable(string_value);
+    let payload = nfcData.tag.ndefMessage[0]["payload"];
+    let string_value = this.bin2string(payload);
+    alert("Receved NFC tag: " + string_value);
+    this.launch_themeable(string_value);
   }
 
   beacon(){
-	this.platform.ready().then(() => {
+    this.platform.ready().then(() => {
       this.bluetooth();
     });
 
   }
 
   bluetooth(){
-	  BLE.isEnabled()
-	  .then( () => {
-		  //alert(this.beaconCount);
-		  //alert("hello");
-		  //if(this.beaconCount%2 == 0){ //Enable monitoring
+    BLE.isEnabled()
+      .then( () => {
+        //alert(this.beaconCount);
+        //alert("hello");
+        //if(this.beaconCount%2 == 0){ //Enable monitoring
 
-					this.detect();
-
-
-		 // }
-		  //else{ //disable monitoring
-			//  this.disable();
-		  //}
+        this.detect();
 
 
-		//this.beaconCount++;
-	  })
-	  .catch( () => {
-		alert("Disabled");
-		BLE.showBluetoothSettings();
-	  });
+        // }
+        //else{ //disable monitoring
+        //  this.disable();
+        //}
+
+
+        //this.beaconCount++;
+      })
+      .catch( () => {
+        alert("Disabled");
+        BLE.showBluetoothSettings();
+      });
 
 
 
   }
 
   detect(){
-	// Request permission to use location on iOS
-	IBeacon.requestAlwaysAuthorization();
-	// create a new delegate and register it with the native layer
-	let delegate = IBeacon.Delegate();
+    // Request permission to use location on iOS
+    IBeacon.requestAlwaysAuthorization();
+    // create a new delegate and register it with the native layer
+    let delegate = IBeacon.Delegate();
 
-	// Subscribe to some of the delegate's event handlers
-	delegate.didStartMonitoringForRegion()
-	  .subscribe(
-	   data => {console.log('didStartMonitoringForRegion: ', data);}
-		//error => console.error();
-	  );
+    // Subscribe to some of the delegate's event handlers
+    delegate.didStartMonitoringForRegion()
+      .subscribe(
+        data => {console.log('didStartMonitoringForRegion: ', data);}
+        //error => console.error();
+      );
 
-	delegate.didEnterRegion()
-	  .subscribe(
-		data => {
-			console.log('didEnterRegion: ', data);
-			let page = data.region.identifier;
-			//alert("ENTER REGION " + page);
-		    //will need some lookup table for the different beacons
-			if(page == "LabGoggles" && !greenBeacon){
-					alert(page);
-					//this.launch_themeable("https://ehs.utoronto.ca/");
-			}
-			if(page == "LabCoat" && !blueBeacon){ //Think there may be a bug if themable browser gets launched twice
-					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
-			}
+    delegate.didEnterRegion()
+      .subscribe(
+        data => {
+          console.log('didEnterRegion: ', data);
+          let page = data.region.identifier;
+          //alert("ENTER REGION " + page);
+          //will need some lookup table for the different beacons
+          if(page == "LabGoggles" && !greenBeacon){
+            alert(page);
+            //this.launch_themeable("https://ehs.utoronto.ca/");
+          }
+          if(page == "LabCoat" && !blueBeacon){ //Think there may be a bug if themable browser gets launched twice
+            //this.launch_themeable("https://ehs.utoronto.ca/resources/");
+          }
 
-		}
-	  );
-
-
-	  delegate.didExitRegion()
-	  .subscribe(
-		data => {
-			console.log('didExitRegion: ', data);
-			let page = data.region.identifier;
-			//alert("EXIT REGION " + page);
-		    //will need some lookup table for the different beacons
-			if(page == "LabGoggles"){
-					//maybe add a variable here so only opens once every day
-					//this.launch_themeable("https://ehs.utoronto.ca/");
-					this.greenBeacon = 1;
-			}
-			if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
-					this.blueBeacon = 1;
-					//this.launch_themeable("https://ehs.utoronto.ca/resources/");
-			}
-
-		}
-	  );
+        }
+      );
 
 
-	let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
-	let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+    delegate.didExitRegion()
+      .subscribe(
+        data => {
+          console.log('didExitRegion: ', data);
+          let page = data.region.identifier;
+          //alert("EXIT REGION " + page);
+          //will need some lookup table for the different beacons
+          if(page == "LabGoggles"){
+            //maybe add a variable here so only opens once every day
+            //this.launch_themeable("https://ehs.utoronto.ca/");
+            this.greenBeacon = 1;
+          }
+          if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
+            this.blueBeacon = 1;
+            //this.launch_themeable("https://ehs.utoronto.ca/resources/");
+          }
 
-	IBeacon.startMonitoringForRegion(blueBeacon)
-	  .then(
-		(data) => {console.log('startMonitoringForRegion: ' + data);
-		}
-	  );
+        }
+      );
 
-	  IBeacon.startMonitoringForRegion(greenBeacon)
-	  .then(
-		(data) => {console.log('startMonitoringForRegion: ' + data);
-		}
-	  );
+
+    let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
+    let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+
+    IBeacon.startMonitoringForRegion(blueBeacon)
+      .then(
+        (data) => {console.log('startMonitoringForRegion: ' + data);
+        }
+      );
+
+    IBeacon.startMonitoringForRegion(greenBeacon)
+      .then(
+        (data) => {console.log('startMonitoringForRegion: ' + data);
+        }
+      );
 
   }
 
   disableBeacon(){
-	  let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
-	  let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
-	  IBeacon.stopMonitoringForRegion(greenBeacon);
-	  IBeacon.stopMonitoringForRegion(blueBeacon);
+    let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
+    let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+    IBeacon.stopMonitoringForRegion(greenBeacon);
+    IBeacon.stopMonitoringForRegion(blueBeacon);
   }
 
   bin2string(array){
@@ -325,16 +338,18 @@ export class HomePage {
     return result;
   }
 
-   nfcWrite(){
-	  let message = Ndef.textRecord('Hello world');
-	  NFC.write([message])
-		.then( ()=> {
-			alert("success");
-		})
-		.catch( () =>{
-			alert("failure");
-		});
+  nfcWrite(){
+    let message = Ndef.textRecord('Hello world');
+    NFC.write([message])
+      .then( ()=> {
+        alert("success");
+      })
+      .catch( () =>{
+        alert("failure");
+      });
   }
+
+
 
 }
 

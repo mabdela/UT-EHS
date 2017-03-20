@@ -24,7 +24,7 @@ export class MyApp {
 
 
 
-  constructor(platform: Platform, public push: Push, public todoService: Todos, public modalCtrl: ModalController, public alertCtrl: AlertController, public authService: Auth, public loadingCtrl: LoadingController) {
+  constructor(platform: Platform, public push: Push, public modalCtrl: ModalController, public alertCtrl: AlertController, public authService: Auth, public loadingCtrl: LoadingController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -41,15 +41,15 @@ export class MyApp {
 	.subscribe((msg) => {
 
     alert(this.notification[0].title+":"+this.notification[0].message);
-	  this.notification.push({title:msg.title, message:msg.text});
-    this.addTodo();
+	  //this.notification.push({title:msg.title, message:msg.text});
+    //this.addTodo();
 
 
 		});
   }
 
 
-  addTodo(){
+  /*addTodo(){
 
 
     this.todoService.createTodo(this.notification[0]).then((result) => {
@@ -71,5 +71,5 @@ export class MyApp {
 
     this.loading.present();
 
-  }
+  }*/
 }
