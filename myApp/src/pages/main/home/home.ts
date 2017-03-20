@@ -1,6 +1,4 @@
 
-
-
 //The last four to control the side menu
 
 import { App, MenuController, NavParams, ToastController, LoadingController } from 'ionic-angular';
@@ -28,26 +26,26 @@ export class HomePage {
   data:any;
   public tag:any;
   ListenerAdded:number;
-  greenBeacon:number;
-  blueBeacon:number;
+  green:number;
+  blue:number;
 
 
 
- /* static get parameters() {
-    return [[Platform], [NavController]];
-  }*/
+  /* static get parameters() {
+   return [[Platform], [NavController]];
+   }*/
 
 
   constructor( private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController, private zone: NgZone, public http: Http, public menu: MenuController , public app: App) {
 
-        //this.menu.swipeEnable(false);//side menu disable
+    //this.menu.swipeEnable(false);//side menu disable
     this.platform = platform;
     this.navCtrl = navCtrl;
     //this.beaconCount = 0
     this.tag = {};
     this.ListenerAdded = 0;
-    this.blueBeacon = 0;
-    this.greenBeacon = 0
+    this.blue = 0;
+    this.green = 0;
 
 
   }
@@ -63,8 +61,6 @@ export class HomePage {
         console.log("Oops!");
       }
     );
-
-
   }
 
 
@@ -125,29 +121,29 @@ export class HomePage {
         }
 
 
-/*
-        //A simple if statement that calls launch_themeable() to display web pages.
+        /*
+         //A simple if statement that calls launch_themeable() to display web pages.
 
-        if(result.text=="Lab Coat Guidelines"){
+         if(result.text=="Lab Coat Guidelines"){
 
-          this.launch_themeable('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2016/02/Lab-Coat-Guidelines.pdf');
+         this.launch_themeable('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2016/02/Lab-Coat-Guidelines.pdf');
 
-        }else if(result.text=="Chemical Spills"){
+         }else if(result.text=="Chemical Spills"){
 
-          this.launch_themeable('https://ehs.utoronto.ca/report-an-incident/emergency-procedures/chemical-spill-procedures/');
+         this.launch_themeable('https://ehs.utoronto.ca/report-an-incident/emergency-procedures/chemical-spill-procedures/');
 
-        }else if(result.text=="Fume Hoods User Guidelines"){
+         }else if(result.text=="Fume Hoods User Guidelines"){
 
-          this.launch_themeable('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2016/12/Fume-Hoods-05-User-Guidelines-Updated.pdf');
+         this.launch_themeable('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2016/12/Fume-Hoods-05-User-Guidelines-Updated.pdf');
 
-        }else if(result.text=="Machine Safety Guidelines"){
+         }else if(result.text=="Machine Safety Guidelines"){
 
-          this.launch_themeable('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2015/10/Machine-Safety-Guidelines-2015.pdf');
-        }else{
+         this.launch_themeable('https://docs.google.com/gview?embedded=true&url=ehs.utoronto.ca/wp-content/uploads/2015/10/Machine-Safety-Guidelines-2015.pdf');
+         }else{
 
-          alert("Scan Results"+ ': ' +result.text);
-        }
-*/
+         alert("Scan Results"+ ': ' +result.text);
+         }
+         */
 
 
       }, (error) => {
@@ -172,7 +168,11 @@ export class HomePage {
       .then(() => {
         console.log(this.ListenerAdded);
         if(this.ListenerAdded == 0){
+          alert("NFC Enabled");
           this.addListenNFC();
+        }
+        else{
+          console.log("NFC already on");
         }
 
 
@@ -273,11 +273,14 @@ export class HomePage {
           let page = data.region.identifier;
           //alert("ENTER REGION " + page);
           //will need some lookup table for the different beacons
-          if(page == "LabGoggles" && !greenBeacon){
-            alert(page);
-            //this.launch_themeable("https://ehs.utoronto.ca/");
+          if(page == "LabGoggles"){
+            if(this.green == 0){
+              //alert(page);
+              this.launch_themeable("https://ehs.utoronto.ca/");
+            }
+
           }
-          if(page == "LabCoat" && !blueBeacon){ //Think there may be a bug if themable browser gets launched twice
+          if(page == "LabCoat" && !this.blue){ //Think there may be a bug if themable browser gets launched twice
             //this.launch_themeable("https://ehs.utoronto.ca/resources/");
           }
 
@@ -295,10 +298,11 @@ export class HomePage {
           if(page == "LabGoggles"){
             //maybe add a variable here so only opens once every day
             //this.launch_themeable("https://ehs.utoronto.ca/");
-            this.greenBeacon = 1;
+            console.log("Exit Beacon range");
+            this.green = 1;
           }
           if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
-            this.blueBeacon = 1;
+            this.blue = 1;
             //this.launch_themeable("https://ehs.utoronto.ca/resources/");
           }
 
@@ -322,7 +326,6 @@ export class HomePage {
       );
 
   }
-
   disableBeacon(){
     let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
     let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
@@ -349,7 +352,4 @@ export class HomePage {
       });
   }
 
-
-
 }
-
