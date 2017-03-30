@@ -27,6 +27,7 @@ export class HomePage {
   ListenerAdded:number;
   green:number;
   blue:number;
+  exit:number;
 
 
 
@@ -45,6 +46,7 @@ export class HomePage {
     this.ListenerAdded = 0;
     this.blue = 0;
     this.green = 0;
+	this.exit = 0;
 
 
   }
@@ -235,6 +237,7 @@ export class HomePage {
 	//alert("Beacon button pressed");
 	this.blue = 0;
 	this.green = 0;
+	this.exit = 0;
     BLE.isEnabled()
       .then( () => {
         //alert(this.beaconCount);
@@ -313,12 +316,13 @@ export class HomePage {
           let page = data.region.identifier;
           //alert("EXIT REGION " + page);
           //will need some lookup table for the different beacons
-          if(page == "LabGoggles"){
+          if(page == "LabGoggles" && !this.exit){
             //maybe add a variable here so only opens once every day
             //this.launch_themeable("https://ehs.utoronto.ca/");
             //console.log("Exit Beacon range");
 			alert("Please remember to remove the goggles");
             this.green = 1;
+			this.exit = 1;
           }
           if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
             this.blue = 1;
