@@ -6,7 +6,6 @@ import { App, MenuController, NavParams, ToastController, LoadingController } fr
 import { Platform, AlertController, NavController } from 'ionic-angular';
 import { NFC, Ndef, IBeacon, BLE } from 'ionic-native';
 import {InAppBrowser, ThemeableBrowser, LocalNotifications} from 'ionic-native';
-
 import {LoginPage}from '../../login-page/login-page';
 import { Component, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
@@ -61,6 +60,11 @@ export class HomePage {
         console.log("Oops!");
       }
     );
+	
+	//Uncomment this to run Beacons without having to press the button.
+	//remove from the home.html page as well to remove button.
+	//Currently commented out for demo resons.
+	//this.bluetooth();
   }
 
 
@@ -215,7 +219,8 @@ export class HomePage {
   parse(nfcData){
     let payload = nfcData.tag.ndefMessage[0]["payload"];
     let string_value = this.bin2string(payload);
-    alert("Receved NFC tag: " + string_value);
+    string_value = "http://" + string_value.slice(1, );
+	//alert("Receved NFC tag: " + string_value);
     this.launch_themeable(string_value);
   }
 
@@ -227,6 +232,9 @@ export class HomePage {
   }
 
   bluetooth(){
+	//alert("Beacon button pressed");
+	//this.blue = 0;
+	//this.green = 0;
     BLE.isEnabled()
       .then( () => {
         //alert(this.beaconCount);
@@ -276,12 +284,22 @@ export class HomePage {
           if(page == "LabGoggles"){
             if(this.green == 0){
               //alert(page);
-              this.launch_themeable("https://ehs.utoronto.ca/");
+              //this.launch_themeable("https://ehs.utoronto.ca/");
+			  alert("This area contains lasers. Please put on the Safety Goggles");
+			  LocalNotifications.schedule({
+				 id:1,
+				 text: 'Entering Beacon Zone',
+			  });
             }
 
           }
           if(page == "LabCoat" && !this.blue){ //Think there may be a bug if themable browser gets launched twice
             //this.launch_themeable("https://ehs.utoronto.ca/resources/");
+			alert("This area is unsafe. Please return to the EHS demo.");
+			LocalNotifications.schedule({
+				 id: 2,
+				 text: 'Entering Beacon Zone',
+			  });
           }
 
         }
@@ -298,7 +316,8 @@ export class HomePage {
           if(page == "LabGoggles"){
             //maybe add a variable here so only opens once every day
             //this.launch_themeable("https://ehs.utoronto.ca/");
-            console.log("Exit Beacon range");
+            //console.log("Exit Beacon range");
+			alert("Please remember to remove the goggles");
             this.green = 1;
           }
           if(page == "LabCoat"){ //Think there may be a bug if themable browser gets launched twice
