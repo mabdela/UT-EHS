@@ -233,8 +233,8 @@ export class HomePage {
 
   bluetooth(){
 	//alert("Beacon button pressed");
-	//this.blue = 0;
-	//this.green = 0;
+	this.blue = 0;
+	this.green = 0;
     BLE.isEnabled()
       .then( () => {
         //alert(this.beaconCount);
@@ -329,8 +329,8 @@ export class HomePage {
       );
 
 
-    let blueBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
-    let greenBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
+    let greenBeacon = IBeacon.BeaconRegion('LabGoggles','b9407f30-f5f8-466e-aff9-25556b57fe6e');
+    let blueBeacon = IBeacon.BeaconRegion('LabCoat','b9407f30-f5f8-466e-aff9-25556b57fe6d');
 
     IBeacon.startMonitoringForRegion(blueBeacon)
       .then(
